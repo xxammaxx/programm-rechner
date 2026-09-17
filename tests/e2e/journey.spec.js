@@ -202,8 +202,27 @@ test('Programmpunkte ohne Eurobetrag werden mit Begruendung ausgewiesen', async 
 
 test('nicht bewertete Programmpunkte werden im Ergebnis nicht mit Eurobetrag genannt', async ({ page }) => {
   await durchlaufe(page);
+  // Strukturelle Zusicherung: die Wirkungszeile ist das einzige Element, das einen
+  // Eurobetrag traegt. Sie darf in diesem Abschnitt gar nicht vorkommen. Das ist
+  // belastbarer als ein Mustevergleich, der Tausenderpunkte uebersieht.
+  await expect(page.locator('#karten-nicht-bewertet .karte__wirkung')).toHaveCount(0);
+  await expect(page.locator('#karten .karte__wirkung').first()).toBeVisible();
+
+  // Zusaetzlich inhaltlich: keine Zeile sieht wie eine Wirkungsangabe aus.
   const text = await page.locator('#karten-nicht-bewertet').innerText();
-  for (const wirkung of text.match(/\d+ € \/ Jahr/g) ?? []) {
-    throw new Error(`Nicht bewerteter Punkt enthaelt einen Eurobetrag: ${wirkung}`);
+  const verdaechtig = text.match(/[+−-]?\d[\d.]*\s*€\s*\/\s*Jahr/g) ?? [];
+  expect(verdaechtig, `Nicht bewertete Punkte mit Eurobetrag: ${verdaechtig.join(', ')}`).toEqual([]);
+});
+
+test('jeder nicht bewertete Programmpunkt nennt eine Begruendung und einen Programmtext', async ({ page }) => {
+  await durchlaufe(page);
+  const karten = page.locator('#karten-nicht-bewertet .karte');
+  const anzahl = await karten.count();
+  expect(anzahl).toBeGreaterThan(0);
+  for (let i = 0; i < anzahl; i += 1) {
+    const karte = karten.nth(i);
+    await expect(karte.locator('.karte__text').first()).not.toBeEmpty();
+    await expect(karte.locator('details.zitat summary')).toHaveCount(1);
+    await expect(karte.locator('a', { hasText: 'Quelle ansehen' })).toHaveCount(1);
   }
 });

@@ -45,7 +45,7 @@ ohne ein vollständiges Transfermodell nicht abbilden.
 
 Das ist eine echte Grenze, nicht eine Formalie. Das ZEW-Gutachten kommt für einen
 Alleinverdiener-Haushalt mit zwei Kindern und 40.000 € Bruttoeinkommen auf ein **Minus** von
-440 € und führt das ausdrücklich auf die Anrechnungsregeln beim Wohngeld zurück. Ein reines
+440 €. Die Ursache nennt ZEW in der Pressemitteilung zum Gutachten: „Bei der AfD ergibt sich das aus einer komplizierten Interaktion aus Steuererleichterungen und den Anrechnungsregeln beim Wohngeld.“ Ein reines
 Steuermodell kann dieses Ergebnis nicht reproduzieren.
 
 Der Rechner reagiert darauf nicht mit einer Schätzung, sondern mit Offenlegung: Im Ergebnis

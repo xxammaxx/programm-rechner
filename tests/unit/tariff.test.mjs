@@ -45,6 +45,12 @@ test('Tarif 2025 stimmt mit den aus dem Gesetz abgeleiteten Referenzwerten über
   }
 });
 
+// Hinweis zur Aussagekraft: papUPTAB26 ist eine zweite, unabhaengig aus dem Ablaufplan
+// abgeschriebene Umsetzung, liegt aber in derselben Datei wie die Tarifparameter. Der Test
+// erkennt damit Parameterdrift und Abweichungen in der Zonenlogik, er ist aber keine
+// unabhaengige Quelle. Die tatsaechlich unabhaengige Pruefung ist die von Hand aus dem
+// Gesetzeswortlaut abgeleitete Tabelle REFERENZ oben sowie der Abgleich mit den amtlichen
+// Vorgaben in tests/reference/bmf-2026-reference.json.
 test('Implementierung stimmt mit dem offiziellen BMF-Programmablaufplan 2026 überein', () => {
   const stichproben = [];
   for (let x = 0; x <= 400000; x += 1) stichproben.push(x);

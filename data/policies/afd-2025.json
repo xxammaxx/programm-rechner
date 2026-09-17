@@ -11,9 +11,10 @@
     "url": "https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_druck.pdf",
     "pdf_internal_title": "BTW25_AfD_Programm_2025-02-03_176_Innenseiten.indd",
     "pdf_file_date": "2025-02-03",
-    "pages_total": 166,
+    "pages_total": 180,
+    "pages_numbered_to": 175,
     "retrieved": "2026-09-17",
-    "page_numbering_note": "source_page refers to the page number printed in the document's running head. The PDF page index is source_page + 2.",
+    "page_numbering_note": "Das PDF hat 180 Seiten; die gedruckte Seitennummerierung laeuft bis 175. source_page refers to the page number printed in the document's running head. The PDF page index is source_page + 2.",
     "quote_normalisation_note": "Quotes are reproduced verbatim except that line-break hyphenation and running heads are removed. No wording, number or punctuation was changed."
   },
   "classification_vocabulary": {
@@ -25,7 +26,7 @@
   "excluded_source_notice": {
     "document": "BT-Drucksache 20/13356 — Antrag der AfD-Bundestagsfraktion 'Programm für Deutschland – Ein neuer Weg für die Ertragsteuern', Drucksachen-Datum 15.10.2024",
     "url": "https://dserver.bundestag.de/btd/20/133/2013356.pdf",
-    "reason": "Ein Fraktionsantrag ist nicht das Bundestagswahlprogramm. Die daraus stammenden Parameter (Erwerbsaufwendungspauschbetrag 2.000 €, Kinderfreibetrag 12.000 €) sind NICHT Teil des Wahlprogramms: die Zeichenfolgen 'Werbungskostenpauschale' und 'Pendlerpauschale' kommen im 166-seitigen Programm null Mal vor. Sie werden in V1 nicht berechnet, aber hier transparent ausgewiesen, weil das ZEW-Gutachten sie unter dem AfD-Programm aufführt."
+    "reason": "Ein Fraktionsantrag ist nicht das Bundestagswahlprogramm. Die daraus stammenden Parameter (Erwerbsaufwendungspauschbetrag 2.000 €, Kinderfreibetrag 12.000 €) sind NICHT Teil des Wahlprogramms: die Zeichenfolgen 'Werbungskostenpauschale' und 'Pendlerpauschale' kommen im 180-seitigen Programm null Mal vor. Sie werden in V1 nicht berechnet, aber hier transparent ausgewiesen, weil das ZEW-Gutachten sie unter dem AfD-Programm aufführt."
   },
   "policies": [
     {
@@ -73,7 +74,7 @@
       "source_page": 14,
       "section_heading": "Mehr Netto vom Brutto",
       "exact_claim": "Mehr Netto vom Brutto schaffen wir durch: Senkung der Einkommensteuer durch einen deutlich höheren Grundfreibetrag; Senkung der Unternehmenssteuern auf ein international konkurrenzfähiges Niveau; Abschaffung des Solidaritätszuschlags für alle",
-      "completeness_note": "Die Zeichenfolge 'Solidaritätszuschlag' kommt im gesamten 166-seitigen Programm genau einmal vor — in dieser Kurzüberblicks-Liste. Es gibt keinen eigenen, detaillierten Abschnitt dazu. Die Vollständigkeit der Maßnahme ('für alle') ist damit wörtlich belegt, die Ausgestaltung nicht weiter ausgeführt.",
+      "completeness_note": "Die Zeichenfolge 'Solidaritätszuschlag' kommt im gesamten 180-seitigen Programm genau einmal vor — in dieser Kurzüberblicks-Liste. Es gibt keinen eigenen, detaillierten Abschnitt dazu. Die Vollständigkeit der Maßnahme ('für alle') ist damit wörtlich belegt, die Ausgestaltung nicht weiter ausgeführt.",
       "documented_parameter": { "solidaritaetszuschlag_satz_prozent": 0 },
       "calculation_status": "DIRECTLY_CALCULABLE",
       "assumption_burden": "none",
@@ -126,12 +127,12 @@
       "source_page": 59,
       "section_heading": "Familiensplitting einführen",
       "exact_claim": "Familien mit Kindern dürfen nicht schlechter gestellt werden als Kinderlose. Als eine der wichtigsten Maßnahmen in Anlehnung an den Wortlaut des Grundgesetzes fordern wir eine Ausweitung des Ehegattensplittings auf das Familiensplitting. Dies hätte zur Folge, dass die Summe der erzielten Einkünfte aller Familienmitglieder durch die Zahl der Familienmitglieder geteilt wird. Hierdurch werden Familien mit Kindern steuerlich entlastet.",
-      "documented_parameter": { "splitting_divisor": "Anzahl der Familienmitglieder = 2 Erwachsene + Anzahl der Kinder", "cap": null },
+      "documented_parameter": { "splitting_divisor": "Anzahl der Familienmitglieder = Zahl der Erwachsenen im Haushalt (2 bei Zusammenveranlagung, sonst 1) + Anzahl der Kinder", "cap": null },
       "calculation_status": "MODEL_ASSUMPTION",
       "assumption_burden": "high",
       "assumptions": [
         "Das Programm nennt das Divisorprinzip ('geteilt durch die Zahl der Familienmitglieder'), aber keine Bemessungsgrundlage im Steuerrechtssinn und keine Begrenzung.",
-        "Annahme 1: Divisor = 2 Erwachsene + Anzahl der Kinder. Kinder werden als Familienmitglieder mitgezählt.",
+        "Annahme 1: Divisor = Zahl der Erwachsenen im Haushalt plus Anzahl der Kinder. Bei Zusammenveranlagung zwei Erwachsene, bei Alleinstehenden und Alleinerziehenden einer. Kinder werden als Familienmitglieder mitgezählt.",
         "Annahme 2: Kinder haben kein eigenes zu versteuerndes Einkommen. Das Haushaltseinkommen ist daher die Summe der Einkünfte der Erwachsenen.",
         "Annahme 3: Als Bemessungsgrundlage wird das zu versteuernde Einkommen verwendet und nicht der Rechtsbegriff 'Einkünfte'. Das Programm verwendet 'Einkünfte'.",
         "Annahme 4: Keine Deckelung des Splittingvorteils. Das Programm nennt keine Obergrenze.",
@@ -157,7 +158,7 @@
       "source_url": "https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_druck.pdf",
       "source_page": 57,
       "section_heading": "Abschaffung aller CO₂-Abgaben",
-      "exact_claim": "Die CO₂-Abgaben erhöhen die Produktionskosten und führen zu einem Wettbewerbsnachteil für die deutsche Industrie. … [Abschnittüberschrift:] Abschaffung aller CO₂-Abgaben",
+      "exact_claim": "Die CO₂-Abgaben erhöhen die Produktionskosten und führen zu einem Wettbewerbsnachteil für die deutsche Industrie. Weiterhin benachteiligen sie ländliche Regionen, insbesondere unsere Landwirte, die auf fossile Energien angewiesen sind.",
       "secondary_claim": {
         "page": 13,
         "text": "Abschaffung der CO₂-Abgabe"
@@ -181,7 +182,7 @@
       "source_date": "2025-01-12",
       "source_url": "https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_druck.pdf",
       "source_page": 13,
-      "section_heading": "Zugang zu sicherer und bezahlbarer Energie",
+      "section_heading": "Vorrang für den Wettbewerb – für einen attraktiven Wirtschaftsstandort",
       "exact_claim": "Reduzierung der Energiesteuer und Senkung der Stromsteuer auf das Minimum",
       "calculation_status": "NOT_INDIVIDUALLY_CALCULABLE",
       "assumption_burden": "n/a",

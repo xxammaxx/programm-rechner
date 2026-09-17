@@ -2,7 +2,6 @@
   "schema_version": "1.0.0",
   "zweck": "Referenzwerte aus amtlichen Quellen. Diese Datei dokumentiert, wogegen der Rechner geprüft wird, und unterscheidet zwischen bestätigten und nicht abschliessend geklärten Werten.",
   "assessment_year": 2026,
-
   "pap_2026_parameter": {
     "quelle": "BMF-Programmablaufplan 2026, BMF-Schreiben vom 12.11.2025, GZ IV C 5 - S 2361/00025/016/028, Anlage 1 und Anlage 2, Stand 12.11.2025 (endgültig)",
     "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-11-12-PAP-2026.html",
@@ -28,7 +27,6 @@
     },
     "pruefung": "tests/unit/params.consistency.test.mjs vergleicht diese Werte mit der Engine."
   },
-
   "amtliches_rechenbeispiel": {
     "quelle": "BMF-Programmablaufplan 2026, Anlage 2, Beispiel 1",
     "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-11-12-PAP-2026-anlage-2.pdf",
@@ -53,29 +51,66 @@
       "status": "offen dokumentiert"
     }
   },
-
   "tarif_referenzwerte": {
     "quelle": "§ 32a Abs. 1 EStG, Veranlagungszeitraum 2026 und 2025, unabhängig aus dem Gesetzeswortlaut berechnet",
     "status": "bestaetigt",
     "werte_2026": [
-      { "zve": 12348, "est": 0 },
-      { "zve": 17799, "est": 1034 },
-      { "zve": 69878, "est": 18213 },
-      { "zve": 277825, "est": 105550 },
-      { "zve": 277826, "est": 105551 },
-      { "zve": 100000, "est": 30864 },
-      { "zve": 300000, "est": 115529 }
+      {
+        "zve": 12348,
+        "est": 0
+      },
+      {
+        "zve": 17799,
+        "est": 1034
+      },
+      {
+        "zve": 69878,
+        "est": 18213
+      },
+      {
+        "zve": 277825,
+        "est": 105550
+      },
+      {
+        "zve": 277826,
+        "est": 105551
+      },
+      {
+        "zve": 100000,
+        "est": 30864
+      },
+      {
+        "zve": 300000,
+        "est": 115529
+      }
     ],
     "werte_2025": [
-      { "zve": 12096, "est": 0 },
-      { "zve": 17443, "est": 1015 },
-      { "zve": 68480, "est": 17849 },
-      { "zve": 277825, "est": 105774 },
-      { "zve": 100000, "est": 31088 },
-      { "zve": 300000, "est": 115753 }
+      {
+        "zve": 12096,
+        "est": 0
+      },
+      {
+        "zve": 17443,
+        "est": 1015
+      },
+      {
+        "zve": 68480,
+        "est": 17849
+      },
+      {
+        "zve": 277825,
+        "est": 105774
+      },
+      {
+        "zve": 100000,
+        "est": 31088
+      },
+      {
+        "zve": 300000,
+        "est": 115753
+      }
     ]
   },
-
   "solidaritaetszuschlag_referenzwerte": {
     "quelle": "§§ 3 und 4 SolzG 1995 sowie Modul MSOLZ des BMF-Programmablaufplans 2026",
     "status": "bestaetigt",
@@ -87,7 +122,6 @@
     "milderungszone_ende_einzel_euro": 37838.28125,
     "ableitung": "5,5 % = 11,9 % x (Bemessungsgrundlage - Freigrenze) / Bemessungsgrundlage  =>  Bemessungsgrundlage = Freigrenze x 1,859375"
   },
-
   "zew_referenzwerte": {
     "quelle": "ZEW-Gutachten Januar 2025, Mikrosimulation ZEW-EviSTA, Rechtsstand Juli 2024",
     "status": "nur_referenz_keine_ableitung",
@@ -95,26 +129,62 @@
     "afd_fiskalwirkung_mrd_euro": 97,
     "beispielhaushalte_afd_euro_jahr": {
       "alleinverdiener_paar_zwei_kinder": [
-        { "brutto": 40000, "wirkung": -440 },
-        { "brutto": 60000, "wirkung": 5305 },
-        { "brutto": 80000, "wirkung": 8626 },
-        { "brutto": 120000, "wirkung": 12099 },
-        { "brutto": 180000, "wirkung": 19185 }
+        {
+          "brutto": 40000,
+          "wirkung": -440
+        },
+        {
+          "brutto": 60000,
+          "wirkung": 5305
+        },
+        {
+          "brutto": 80000,
+          "wirkung": 8626
+        },
+        {
+          "brutto": 120000,
+          "wirkung": 12099
+        },
+        {
+          "brutto": 180000,
+          "wirkung": 19185
+        }
       ],
       "single": [
-        { "brutto": 20000, "wirkung": 12 },
-        { "brutto": 40000, "wirkung": 833 },
-        { "brutto": 60000, "wirkung": 878 },
-        { "brutto": 80000, "wirkung": 928 },
-        { "brutto": 120000, "wirkung": 2710 }
+        {
+          "brutto": 20000,
+          "wirkung": 12
+        },
+        {
+          "brutto": 40000,
+          "wirkung": 833
+        },
+        {
+          "brutto": 60000,
+          "wirkung": 878
+        },
+        {
+          "brutto": 80000,
+          "wirkung": 928
+        },
+        {
+          "brutto": 120000,
+          "wirkung": 2710
+        }
       ]
     },
     "bekannte_unterschiede_zum_rechner": [
       "Rechtsstand: ZEW rechnet auf Juli 2024, der Rechner auf 2026.",
       "Sparer-Pauschbetrag: ZEW setzt 2.400 Euro an, das verabschiedete Programm nennt 6.672 Euro.",
       "Werbungskostenpauschale 2.000 Euro und Kinderfreibetrag 12.000 Euro stammen aus BT-Drucksache 20/13356, nicht aus dem Wahlprogramm, und werden deshalb nicht gerechnet.",
-      "Transferwirkungen: ZEW modelliert Wohngeld, Grundsicherung, Kinderzuschlag und Sozialversicherung. Der Rechner weist nur die Steuerseite aus. Das erklärt insbesondere das negative Ergebnis von 440 Euro beim Beispielhaushalt mit 40.000 Euro, das ZEW selbst auf die Anrechnung beim Wohngeld zurückführt.",
+      "Transferwirkungen: ZEW modelliert Wohngeld, Grundsicherung, Kinderzuschlag und Sozialversicherung; der Rechner weist nur die Steuerseite aus. Das ZEW weist für einen Alleinverdiener-Haushalt mit zwei Kindern und 40.000 Euro Bruttojahreseinkommen ein Minus von 440 Euro aus. Die Ursache nennt es in seiner Pressemitteilung: \"Bei der AfD ergibt sich das aus einer komplizierten Interaktion aus Steuererleichterungen und den Anrechnungsregeln beim Wohngeld.\" Quelle: https://www.zew.de/presse/pressearchiv/wen-die-parteien-entlasten-wuerden — im Gutachten selbst ist nur der Wert 440 Euro ablesbar (Abbildung 37).",
       "Das ZEW-Ergebnis für den 40.000-Euro-Haushalt lässt sich mit einem reinen Steuermodell nicht reproduzieren. Genau deshalb zeigt der Rechner einen Hinweis auf Transferleistungen."
-    ]
+    ],
+    "pressemitteilung": {
+      "titel": "Wen die Parteien entlasten würden",
+      "url": "https://www.zew.de/presse/pressearchiv/wen-die-parteien-entlasten-wuerden",
+      "zitat": "Bei der AfD ergibt sich das aus einer komplizierten Interaktion aus Steuererleichterungen und den Anrechnungsregeln beim Wohngeld.",
+      "hinweis": "Diese Ursachenangabe steht in der Pressemitteilung, nicht im Gutachten. Der Rechner zitiert sie deshalb mit der Pressemitteilung als Quelle."
+    }
   }
 }

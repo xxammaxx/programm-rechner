@@ -7,7 +7,6 @@ import { berechneJahr } from './est.js';
 // vierprozentige Kuerzung nach § 10 Abs. 1 Nr. 3 Satz 4 EStG gilt nur fuer den
 // Sonderausgabenabzug, nicht fuer den tatsaechlichen Beitrag.
 export const ARBEITSLOSENVERSICHERUNG_AN_PROZENT = 0.013;
-export const ARBEITSLOSENVERSICHERUNG_GESAMT_PROZENT = 0.026;
 
 export function arbeitnehmerbeitraege(brutto, kinder, params = PARAMS_2026) {
   const v = params.vorsorge;

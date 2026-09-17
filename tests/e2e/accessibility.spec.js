@@ -72,10 +72,39 @@ test('der Fokus ist immer sichtbar', async ({ page }) => {
 
 test('die Auswahl ist nicht allein ueber Farbe erkennbar', async ({ page }) => {
   await page.goto('/');
+  const brutto = page.locator('input[name="modus"][value="brutto"]');
+  const netto = page.locator('input[name="modus"][value="netto"]');
+
+  // Der Zustand liegt in echten Radiofeldern derselben Gruppe, damit Vorleseprogramme
+  // ihn ankündigen. Das ist der maschinenlesbare Traeger der Information.
+  for (const feld of [brutto, netto]) {
+    await expect(feld).toHaveAttribute('type', 'radio');
+    await expect(feld).toHaveAttribute('name', 'modus');
+  }
+  await expect(brutto).toBeChecked();
+  await expect(netto).not.toBeChecked();
+  await expect(page.getByRole('radiogroup').first()).toBeVisible();
+
+  // Der Zustand aendert sich zusaetzlich sichtbar, nicht nur in der Textfarbe: die
+  // Hintergrundflaeche der gewaehlten Option unterscheidet sich messbar.
+  const flaeche = (wert) =>
+    page.locator(`input[name="modus"][value="${wert}"]`).evaluate((el) => {
+      const label = el.closest('label');
+      const s = getComputedStyle(label);
+      return `${s.backgroundColor}|${s.borderColor}|${s.color}`;
+    });
+
+  const vorher = { brutto: await flaeche('brutto'), netto: await flaeche('netto') };
   await page.check('input[name="modus"][value="netto"]');
-  // Der Zustand ist ueber das Eingabeelement selbst bestimmt, nicht nur ueber die Farbe.
-  await expect(page.locator('input[name="modus"][value="netto"]')).toBeChecked();
-  await expect(page.locator('input[name="modus"][value="brutto"]')).not.toBeChecked();
+  const nachher = { brutto: await flaeche('brutto'), netto: await flaeche('netto') };
+
+  expect(nachher.netto, 'die gewaehlte Option muss sich sichtbar aendern').not.toBe(vorher.netto);
+  expect(nachher.brutto, 'die abgewaehlte Option muss sich sichtbar aendern').not.toBe(vorher.brutto);
+
+  // Die Umschaltung ueber die Tastatur muss ebenso funktionieren.
+  await page.locator('input[name="modus"][value="brutto"]').focus();
+  await page.keyboard.press('Space');
+  await expect(brutto).toBeChecked();
 });
 
 test('Statusangaben sind Text, nicht nur Farbe', async ({ page }) => {

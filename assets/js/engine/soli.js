@@ -59,6 +59,8 @@ export function solidaritaetszuschlag(
   };
 }
 
+// § 4 Satz 3 SolzG 1995: Bruchteile eines Cents bleiben ausser Ansatz.
+// Abschneiden, nicht kaufmaennisch runden.
 export function ohneCentBruchteile(betrag) {
-  return Math.floor(Math.round(betrag * 100)) / 100;
+  return Math.floor(betrag * 100) / 100;
 }

@@ -34,7 +34,7 @@ Wahlprogramm zitiert.
 | Titel | Programm für Deutschland. Programm der Alternative für Deutschland für die Wahl zum 21. Deutschen Bundestag |
 | Organisation | Alternative für Deutschland |
 | Verabschiedung | 16. Bundesparteitag, 11.–12. Januar 2025, Riesa, einstimmig |
-| Umfang | 166 Seiten |
+| Umfang | 180 Seiten, nummeriert bis 175 |
 | PDF-Datum | 3. Februar 2025 |
 | PDF-Titel | `BTW25_AfD_Programm_2025-02-03_176_Innenseiten.indd` |
 | URL | https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_druck.pdf |
@@ -121,7 +121,7 @@ Programmfassung, und die Abweichung wird erklärt.
 
 | Position | ZEW-Bullet zum AfD-Programm | Programmtext | Befund |
 |---|---|---|---|
-| Werbungskostenpauschale 2.000 €, Kinderfreibetrag 12.000 € | modelliert, mit Fußnote | Die Zeichenfolgen „Werbungskostenpauschale“ und „Pendlerpauschale“ kommen im 166-seitigen Programm **null Mal** vor | Quelle ist die BT-Drucksache 20/13356, ein Antrag der AfD-Bundestagsfraktion vom 15. Oktober 2024, **nicht** das Wahlprogramm |
+| Werbungskostenpauschale 2.000 €, Kinderfreibetrag 12.000 € | modelliert, mit Fußnote | Die Zeichenfolgen „Werbungskostenpauschale“ und „Pendlerpauschale“ kommen im 180-seitigen Programm **null Mal** vor | Quelle ist die BT-Drucksache 20/13356, ein Antrag der AfD-Bundestagsfraktion vom 15. Oktober 2024, **nicht** das Wahlprogramm |
 
 Ein Fraktionsantrag ist nicht das Bundestagswahlprogramm. Beide Posten werden daher in V1
 nicht gerechnet und ausdrücklich als ausgeschlossen geführt. Die Angabe steht in
@@ -132,8 +132,19 @@ nicht gerechnet und ausdrücklich als ausgeschlossen geführt. Die Angabe steht 
 
 Das Gutachten weist außerdem Ergebnisse aus, die ein reines Steuermodell nicht
 reproduzieren kann. Beispiel: Für einen Alleinverdiener-Haushalt mit zwei Kindern und
-40.000 € Brutto ergibt sich im Gutachten ein **Minus** von 440 €, das ZEW selbst auf die
-Anrechnungsregeln beim Wohngeld zurückführt. Der Rechner bildet Wohngeld nicht ab. Er zeigt
+40.000 € Brutto ergibt sich im Gutachten ein **Minus** von 440 € (Abbildung 37).
+
+Wichtig für die Quellentreue: Diese **Zahl** steht im Gutachten, die **Ursache** steht dort
+nicht. Die Ursachenangabe findet sich in der zugehörigen Pressemitteilung:
+
+> „Bei der AfD ergibt sich das aus einer komplizierten Interaktion aus Steuererleichterungen
+> und den Anrechnungsregeln beim Wohngeld.“
+>
+> ZEW, „Wen die Parteien entlasten würden“,
+> <https://www.zew.de/presse/pressearchiv/wen-die-parteien-entlasten-wuerden>
+
+Der Rechner zitiert die Ursache deshalb mit der Pressemitteilung als Quelle und nicht mit
+dem Gutachten. Er bildet Wohngeld nicht ab. Er zeigt
 deshalb im Ergebnis einen Hinweis auf Transferleistungen (`#transfer-hinweis`) und weist die
 Steuerseite getrennt aus. Die ZEW-Beispielwerte sind in
 `tests/reference/bmf-2026-reference.json` unter `zew_referenzwerte` mit dem Status

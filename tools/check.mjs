@@ -93,7 +93,7 @@ for (const datei of htmlDateien) {
 
   // Nur erlaubte externe Ziele.
   const extern = [...inhalt.matchAll(/(?:src|href)="(https?:\/\/[^"]+)"/g)].map((m) => m[1]);
-  const unerlaubt = extern.filter((u) => !/^https:\/\/(www\.)?(afd\.de|gesetze-im-internet\.de|bundesfinanzministerium\.de|recht\.bund\.de|zew\.de|dserver\.bundestag\.de|web\.archive\.org|xxammaxx\.github\.io|idw-online\.de|bmf-steuerrechner\.de)\//.test(u));
+  const unerlaubt = extern.filter((u) => !/^https:\/\/(www\.)?(afd\.de|gesetze-im-internet\.de|bundesfinanzministerium\.de|recht\.bund\.de|zew\.de|dserver\.bundestag\.de|web\.archive\.org|xxammaxx\.github\.io|bmf-steuerrechner\.de)\//.test(u));
   if (unerlaubt.length > 0) fehl(`${rel} verweist auf unerwartete externe Ziele: ${unerlaubt.join(', ')}`);
   else ok(`${rel}: alle externen Verweise zeigen auf belegte Quellen`);
 

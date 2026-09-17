@@ -182,9 +182,10 @@
   },
   "transfers_nicht_modelliert": {
     "items": ["Wohngeld", "Bürgergeld / Grundsicherung", "Kinderzuschlag", "Unterhaltsvorschuss"],
-    "reason": "Diese Leistungen sind einkommens- und vermögensabhängig und werden auf das Haushaltseinkommen angerechnet. Ihre Wechselwirkung mit Steueränderungen lässt sich nicht ohne ein vollständiges Transfermodell abbilden. Das ZEW-Gutachten zeigt genau hier einen Gegenlaufeffekt: Für einen Beispielhaushalt mit 40.000 Euro Bruttoeinkommen ergibt sich im AfD-Szenario trotz Steuerentlastungen ein Minus von 440 Euro, das ZEW ausdrücklich auf die Anrechnungsregeln beim Wohngeld zurückführt. V1 weist deshalb nur die Steuer- und Kindergeldseite aus und zeigt dazu einen deutlichen Hinweis im Ergebnis.",
+    "reason": "Diese Leistungen sind einkommens- und vermögensabhängig und werden auf das Haushaltseinkommen angerechnet. Ihre Wechselwirkung mit Steueränderungen lässt sich nicht ohne ein vollständiges Transfermodell abbilden. Dass hier ein Gegenlaufeffekt entstehen kann, belegt das ZEW: In seiner Pressemitteilung zum Gutachten heißt es für einen Alleinverdiener-Haushalt mit zwei Kindern und 40.000 Euro Bruttojahreseinkommen: \"Beim AfD-Programm wären es jährlich 440 Euro weniger … Bei der AfD ergibt sich das aus einer komplizierten Interaktion aus Steuererleichterungen und den Anrechnungsregeln beim Wohngeld.\" Zur Klarstellung: Diese Ursachenangabe steht in der Pressemitteilung, nicht im Gutachten selbst; im Gutachten ist nur der Wert 440 Euro in Abbildung 37 ablesbar. V1 weist deshalb nur die Steuer- und Kindergeldseite aus und zeigt dazu einen deutlichen Hinweis im Ergebnis.",
     "consequence": "Das Ergebnis ist eine Steuer- und Kindergeldrechnung, keine Gesamtbilanz des Haushalts. Dieser Hinweis wird im Ergebnisbildschirm sichtbar angezeigt.",
-    "reference": "https://zew.de/fileadmin/FTP/gutachten/Bundestagswahlprogramme_ZEW_2025.pdf"
+    "reference_gutachten": "https://zew.de/fileadmin/FTP/gutachten/Bundestagswahlprogramme_ZEW_2025.pdf",
+    "reference_pressemitteilung": "https://www.zew.de/presse/pressearchiv/wen-die-parteien-entlasten-wuerden"
   },
   "last_verified": "2026-09-17",
   "verified_by": "Direkte Abfrage der Primärquellen (gesetze-im-internet.de, recht.bund.de, bundesfinanzministerium.de) am 17.09.2026"

@@ -82,3 +82,56 @@ test('ein sehr niedriges Einkommen ergibt eine ehrliche Null statt einer erfunde
   await page.click('#ueberspringen-4');
   await expect(page.locator('#ergebnis-betrag')).toContainText('0');
 });
+
+test('ein Netto oberhalb des abbildbaren Bereichs ergibt keine erfundene Null', async ({ page }) => {
+  // Der Rechner bildet Bruttoeinkommen bis 2.000.000 Euro ab. Ein Netto darueber laesst
+  // sich nicht zurueckrechnen. Dann darf keine Null erscheinen, die wie ein Ergebnis wirkt.
+  await page.goto('/');
+  await page.fill('#einkommen', '200000');
+  await page.check('input[name="modus"][value="netto"]');
+  await page.click('#weiter-1');
+  await page.click('#weiter-2');
+  await page.click('#weiter-3');
+  await page.click('#ueberspringen-4');
+
+  const betrag = (await page.textContent('#ergebnis-betrag')).trim();
+  expect(betrag).not.toMatch(/\d/);
+  expect(betrag).toContain('kein Ergebnis');
+  const zusatz = await page.locator('#ergebnis-zusatz').innerText();
+  expect(zusatz).toContain('kein Bruttoeinkommen zurückrechnen');
+  // Ohne Zahl gibt es auch keine Abdeckung und keine Vorschlagskarten.
+  await expect(page.locator('#ergebnis-details')).toBeHidden();
+  await expect(page.locator('#ergebnis-monat')).toBeEmpty();
+});
+
+test('der Sparer-Pauschbetrag wird ohne Kapitalertraege neutral gekennzeichnet', async ({ page }) => {
+  // Der Vorschlag ist berechenbar, greift aber nicht. Er darf deshalb nicht als
+  // grundsaetzlich nicht berechenbar erscheinen.
+  await page.goto('/');
+  await page.fill('#einkommen', '4.000');
+  await page.click('#weiter-1');
+  await page.click('#weiter-2');
+  await page.click('#weiter-3');
+  await page.click('#ueberspringen-4');
+
+  const karte = page.locator('#karten-nicht-bewertet .karte', { hasText: 'Sparer-Pauschbetrag' }).first();
+  await expect(karte).toBeVisible();
+  await expect(karte.locator('.marke')).toContainText('nicht bewertet');
+  await expect(karte.locator('.marke')).not.toContainText('Nicht seriös in Euro berechenbar');
+  await expect(karte.locator('.karte__text').first()).toContainText('greift bei deinen Angaben aber nicht');
+  // Und in der Abdeckung steht der ehrliche Grund.
+  await expect(page.locator('#abdeckung-liste')).toContainText('kein Kapitalertrag angegeben');
+});
+
+test('echt nicht berechenbare Punkte behalten ihre Kennzeichnung', async ({ page }) => {
+  await page.goto('/');
+  await page.fill('#einkommen', '4.000');
+  await page.click('#weiter-1');
+  await page.click('#weiter-2');
+  await page.click('#weiter-3');
+  await page.click('#ueberspringen-4');
+
+  const karte = page.locator('#karten-nicht-bewertet .karte', { hasText: 'CO₂-Abgaben' }).first();
+  await expect(karte.locator('.marke')).toHaveText('Nicht seriös in Euro berechenbar');
+  await expect(karte.locator('.karte__text').first()).toContainText('Verbrauch');
+});

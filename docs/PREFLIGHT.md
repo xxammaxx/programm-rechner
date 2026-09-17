@@ -51,7 +51,9 @@ No MCP servers are configured for this workspace. Therefore:
 
 - URL: `https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_druck.pdf`
 - Document fingerprint: PDF title `BTW25_AfD_Programm_2025-02-03_176_Innenseiten.indd`,
-  166 pages, file date 2025-02-03.
+  180 PDF pages, printed numbering to page 175, file date 2025-02-03.
+  (`pdfinfo`: 180 pages. An earlier count of 166 came from counting form feeds in the
+  `pdftotext -layout` output and was wrong; corrected 2026-09-17.)
 - Adoption clause verified verbatim on the front matter: *"Das vorliegende Wahlprogramm
   für die Bundestagswahl 2025 wurde auf dem 16. Bundesparteitag der Alternative für
   Deutschland vom 11. bis zum 12. Januar 2025 in Riesa beraten und einstimmig
@@ -130,7 +132,7 @@ A second, independent divergence was also verified:
 
 | Item | ZEW AfD bullet | Programme text | Verdict |
 |---|---|---|---|
-| Werbungskostenpauschale 2 000 € / Kinderfreibetrag 12 000 € | modelled by ZEW with footnote | Strings `Werbungskostenpauschale` and `Pendlerpauschale` occur **0 times** in the 166-page programme | Source is **BT-Drucksache 20/13356** (AfD-Fraktion motion of 15.10.2024), *not* the Wahlprogramm |
+| Werbungskostenpauschale 2 000 € / Kinderfreibetrag 12 000 € | modelled by ZEW with footnote | Strings `Werbungskostenpauschale` and `Pendlerpauschale` occur **0 times** in the 180-page programme | Source is **BT-Drucksache 20/13356** (AfD-Fraktion motion of 15.10.2024), *not* the Wahlprogramm |
 
 Consequence, applied as a hard rule (`SOURCE_CONFLICT = FAIL_CLOSED`):
 

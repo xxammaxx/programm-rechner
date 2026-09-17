@@ -22,7 +22,8 @@
       "version": "FINAL — einstimmig verabschiedet auf dem 16. Bundesparteitag, 11.–12. Januar 2025, Riesa",
       "datum": "2025-01-12",
       "url": "https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_druck.pdf",
-      "seiten": 166,
+      "seiten_im_pdf": 180,
+      "seiten_nummeriert_bis": 175,
       "abgerufen": "2026-09-17",
       "verwendung": "Primäre politische Quelle. Jeder Programmpunkt des Rechners ist hieraus wörtlich belegt.",
       "hinweis": "Die Zahl im Feld source_page der Programmpunktdateien ist die im Dokument aufgedruckte Seitenzahl. Der PDF-Seitenindex ist source_page + 2."
@@ -193,6 +194,12 @@
         "Die Ergebnisse gelten nicht für die Wahlprogramme als Ganzes.",
         "Zweitrundeneffekte werden nicht berücksichtigt."
       ],
+      "pressemitteilung": {
+        "titel": "Wen die Parteien entlasten würden",
+        "url": "https://www.zew.de/presse/pressearchiv/wen-die-parteien-entlasten-wuerden",
+        "zitat": "Bei der AfD ergibt sich das aus einer komplizierten Interaktion aus Steuererleichterungen und den Anrechnungsregeln beim Wohngeld.",
+        "verwendung": "Nur diese Pressemitteilung nennt eine Ursache für den Gegenlaufeffekt. Das Gutachten selbst weist in Abbildung 37 nur den Wert 440 Euro aus. Der Rechner zitiert die Ursache deshalb mit der Pressemitteilung als Quelle, nicht mit dem Gutachten."
+      },
       "abweichende_annahme": {
         "position": "ZEW modelliert für die AfD einen Sparer-Freibetrag von 2.400 Euro.",
         "programm": "Die verabschiedete Programmfassung nennt 6.672 Euro.",
@@ -209,7 +216,7 @@
       "url": "https://dserver.bundestag.de/btd/20/133/2013356.pdf",
       "abgerufen": "2026-09-17",
       "verwendung": "NICHT als Programmquelle verwendet. Wird nur geführt, um nachzuweisen, dass das ZEW-Gutachten die Posten Werbungskostenpauschale 2.000 Euro und Kinderfreibetrag 12.000 Euro aus diesem Fraktionsantrag und nicht aus dem Wahlprogramm übernommen hat.",
-      "nachweis": "Die Zeichenfolgen 'Werbungskostenpauschale' und 'Pendlerpauschale' kommen im 166-seitigen Wahlprogramm null Mal vor."
+      "nachweis": "Die Zeichenfolgen 'Werbungskostenpauschale' und 'Pendlerpauschale' kommen im 180-seitigen Wahlprogramm null Mal vor."
     },
     {
       "id": "bmf-steuerrechner",

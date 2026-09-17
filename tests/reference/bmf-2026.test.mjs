@@ -76,6 +76,16 @@ test('Die ZEW-Werte sind als reine Referenz gekennzeichnet und werden nicht als 
   assert.ok(alle.includes('2.400'), 'die Sparer-Pauschbetrag-Abweichung muss benannt sein');
   assert.ok(alle.includes('20/13356'), 'der Fraktionsantrag muss benannt sein');
   assert.ok(alle.includes('Wohngeld'), 'die fehlenden Transferwirkungen muessen benannt sein');
+  // Die Ursachenangabe steht in der Pressemitteilung, nicht im Gutachten. Das muss so
+  // belegt sein, damit keine Aussage dem falschen Dokument zugeschrieben wird.
+  assert.ok(z.pressemitteilung, 'die Pressemitteilung muss als eigene Quelle geführt sein');
+  assert.match(z.pressemitteilung.url, /^https:\/\/www\.zew\.de\/presse\//);
+  assert.ok(z.pressemitteilung.zitat.includes('Anrechnungsregeln beim Wohngeld'));
+  assert.ok(
+    z.pressemitteilung.hinweis.includes('nicht im Gutachten'),
+    'der Unterschied zwischen Gutachten und Pressemitteilung muss benannt sein',
+  );
+  assert.ok(alle.includes('im Gutachten selbst ist nur der Wert 440 Euro ablesbar'));
 });
 
 test('Das AfD-Szenario verschiebt den Tarif genau um die Grundfreibetragsdifferenz', () => {

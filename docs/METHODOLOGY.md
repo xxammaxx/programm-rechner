@@ -190,7 +190,7 @@ Die Berechnung ist in `assets/js/engine/scenario.js` als `TARIF_VERSCHIEBUNG`,
 
 Parameter: Das Programm nennt in der Übersichtsliste „Mehr Netto vom Brutto“ die
 „Abschaffung des Solidaritätszuschlags für alle“. Die Zeichenfolge „Solidaritätszuschlag“
-kommt im gesamten 166-seitigen Programm genau einmal vor, in dieser Liste. Es gibt keinen
+kommt im gesamten 180-seitigen Programm genau einmal vor, in dieser Liste. Es gibt keinen
 eigenen Detailabschnitt. Die Vollständigkeit der Maßnahme („für alle“) ist damit wörtlich
 belegt; die Ausgestaltung ist es nicht.
 
@@ -225,8 +225,18 @@ Annahmen:
    werden mit der Abgeltungsteuer von 25 % gerechnet.
 
 Die Wirkung ist nach oben durch die Differenz der Pauschbeträge begrenzt:
-`6.672 − 1.000 = 5.672` € je Alleinstehendem, multipliziert mit dem Abgeltungsteuersatz von
-25 %, also höchstens 1.418 € im Jahr. `tests/unit/scenario.test.mjs` prüft diese Grenze.
+`6.672 − 1.000 = 5.672` € je Alleinstehendem.
+
+Bei Alleinwirkung dieses Vorschlags kommen zwei Steuerbestandteile zusammen: die
+Abgeltungsteuer von 25 % auf die zusätzlich freigestellten Erträge (1.418 €) und der
+Solidaritätszuschlag von 5,5 % auf genau diese Abgeltungsteuer (rund 78 €). Die Obergrenze
+der Alleinwirkung liegt damit bei `5.672 × 25 % × 1,055 ≈ 1.496 €` im Jahr.
+`tests/unit/scenario.test.mjs` prüft genau diesen Wert.
+
+Im Gesamtszenario entfällt der Solidaritätszuschlag. Dort beträgt die Wirkung des Sparer-
+Pauschbetrags deshalb nur `5.672 × 25 % = 1.418 €`. Beide Zahlen sind richtig, sie gehören
+aber zu verschiedenen Bezugsgrößen: Die 1.496 € sind die Alleinwirkung gegenüber geltendem
+Recht, die 1.418 € gelten bei bereits abgeschafftem Solidaritätszuschlag.
 
 ### 3.4 Familiensplitting (S. 59)
 
@@ -236,8 +246,10 @@ Bemessungsgrundlage im Steuerrechtssinn, keine Obergrenze und keine Übergangsre
 
 Annahmen, vollständig:
 
-1. Teiler ist die Zahl der Familienmitglieder, also zwei Erwachsene plus die Zahl der
-   Kinder. Kinder werden mitgezählt.
+1. Teiler ist die Zahl der im Haushalt lebenden Personen: die Zahl der Erwachsenen plus
+   die Zahl der Kinder. Bei Zusammenveranlagung sind das zwei Erwachsene, bei
+   Alleinstehenden und Alleinerziehenden einer. Im Code ist das
+   `(zusammenveranlagt ? 2 : 1) + kinder`. Kinder werden mitgezählt.
 2. Kinder haben kein eigenes zu versteuerndes Einkommen. Das Haushaltseinkommen ist die
    Summe der Einkünfte der Erwachsenen.
 3. Als Bemessungsgrundlage dient das zu versteuernde Einkommen, nicht der Rechtsbegriff
@@ -289,7 +301,7 @@ Nicht gerechnet werden außerdem zwei Posten, die das ZEW-Gutachten unter dem Af
 aufführt: die Werbungskostenpauschale von 2.000 € und ein Kinderfreibetrag von 12.000 €.
 Beide stehen nicht im Wahlprogramm, sondern im Antrag der AfD-Bundestagsfraktion vom
 15. Oktober 2024 (BT-Drucksache 20/13356). Die Zeichenfolgen „Werbungskostenpauschale“ und
-„Pendlerpauschale“ kommen im 166-seitigen Programm kein einziges Mal vor. Siehe
+„Pendlerpauschale“ kommen im 180-seitigen Programm kein einziges Mal vor. Siehe
 `docs/SOURCES.md`.
 
 ## 5. Einzelwirkung, Gesamtwirkung und Wechselwirkung

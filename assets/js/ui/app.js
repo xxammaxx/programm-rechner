@@ -1,5 +1,5 @@
-import { analysiere, BASELINE, SZENARIEN, GESAMTSZENARIO } from '../engine/scenario.js';
-import { bruttoBandAusNetto, nettoJahr } from '../engine/netto.js';
+import { analysiere, BASELINE } from '../engine/scenario.js';
+import { bruttoBandAusNetto } from '../engine/netto.js';
 import { RECHTSSTAND, KONFIGURATION } from '../config.js';
 import { analytikStarten, zaehle, zaehleSeitenaufruf, meldeFehler, oeffentlicheZahl } from '../analytics.js';
 
@@ -88,8 +88,8 @@ function ermittleBrutto() {
       rueckrechnung: null,
     };
   }
-  const nettoJahr = Math.round(zustand.einkommenMonat * 12);
-  const rueck = bruttoBandAusNetto(nettoJahr, haushalt, BASELINE);
+  const nettoJahrWert = Math.round(zustand.einkommenMonat * 12);
+  const rueck = bruttoBandAusNetto(nettoJahrWert, haushalt, BASELINE);
   if (rueck.brutto === null) {
     return { bruttoJahr: null, band: null, sicher: false, rest: null, rueckrechnung: rueck };
   }
@@ -98,14 +98,14 @@ function ermittleBrutto() {
     band: rueck.band,
     sicher: false,
     rest: rueck.rest,
-    nettoJahr,
+    nettoJahr: nettoJahrWert,
     rueckrechnung: rueck,
   };
 }
 
 /* ---------- Ergebnisdarstellung ---------- */
 
-function kartenEintrag(vorschlag, daten, analyse) {
+function kartenEintrag(vorschlag, daten, analyse, bruttoInfo) {
   const li = document.createElement('li');
   li.className = 'karte';
 
@@ -207,6 +207,16 @@ function kartenEintrag(vorschlag, daten, analyse) {
   quellzeile.textContent = `Quelle: ${daten.source_title}, Seite ${daten.source_page}.`;
   rechenweg.appendChild(quellzeile);
 
+  // Bei einer Nettoangabe wird das Brutto zurueckgerechnet. Der verbleibende Rest wird
+  // offengelegt, damit die Ungenauigkeit nachvollziehbar bleibt.
+  if (bruttoInfo && bruttoInfo.rest !== null && bruttoInfo.rest !== undefined && bruttoInfo.rest !== 0) {
+    const restzeile = document.createElement('p');
+    restzeile.textContent =
+      `Die Rückrechnung aus dem Nettoeinkommen trifft das angegebene Netto bis auf ` +
+      `${euro2.format(Math.abs(bruttoInfo.rest))} genau. Ursache sind die Abrundungen des Tarifs auf volle Euro.`;
+    rechenweg.appendChild(restzeile);
+  }
+
   rechenwegKnopf.addEventListener('click', () => {
     rechenweg.hidden = !rechenweg.hidden;
     rechenwegKnopf.setAttribute('aria-expanded', String(!rechenweg.hidden));
@@ -217,7 +227,10 @@ function kartenEintrag(vorschlag, daten, analyse) {
   return li;
 }
 
-function nichtBewertetEintrag(daten) {
+// nichtAnwendbarGrund ist gesetzt, wenn der Vorschlag berechenbar waere, aber fuer diesen
+// Haushalt nicht greift, zum Beispiel der Sparer-Pauschbetrag ohne Kapitalertraege. Dann
+// darf nicht der Eindruck entstehen, der Punkt sei grundsaetzlich nicht berechenbar.
+function nichtBewertetEintrag(daten, nichtAnwendbarGrund = null) {
   const li = document.createElement('li');
   li.className = 'karte';
 
@@ -228,13 +241,27 @@ function nichtBewertetEintrag(daten) {
   const marke = document.createElement('p');
   marke.className = 'karte__marke-zeile';
   const span = document.createElement('span');
-  span.className = 'marke marke--nicht';
-  span.textContent = 'Nicht seriös in Euro berechenbar';
+  if (nichtAnwendbarGrund) {
+    span.className = 'marke marke--nicht';
+    span.textContent = 'Für diesen Haushalt nicht bewertet';
+  } else if (daten.calculation_status === 'DIRECTLY_CALCULABLE') {
+    span.className = 'marke marke--direkt';
+    span.textContent = 'Direkt berechenbar, aber ohne Angabe nicht bewertet';
+  } else if (daten.calculation_status === 'MODEL_ASSUMPTION') {
+    span.className = 'marke marke--modell';
+    span.textContent = 'Modellannahme, für diesen Haushalt nicht bewertet';
+  } else {
+    span.className = 'marke marke--nicht';
+    span.textContent = 'Nicht seriös in Euro berechenbar';
+  }
   marke.appendChild(span);
 
   const text = document.createElement('p');
   text.className = 'karte__text';
-  text.textContent = daten.not_calculable_reason ?? 'Für diesen Punkt gibt es keinen belastbaren persönlichen Eurobetrag.';
+  const begruendung = nichtAnwendbarGrund
+    ? `Dieser Vorschlag lässt sich berechnen, greift bei deinen Angaben aber nicht: ${nichtAnwendbarGrund}.`
+    : null;
+  text.textContent = begruendung ?? daten.not_calculable_reason ?? 'Für diesen Punkt gibt es keinen belastbaren persönlichen Eurobetrag.';
 
   // Das woertliche Zitat steht vollstaendig zur Verfuegung, wird aber erst auf Wunsch
   // aufgeklappt. Die Begruendung bleibt immer sichtbar.
@@ -265,6 +292,30 @@ function nichtBewertetEintrag(daten) {
 
 function baueErgebnis() {
   const bruttoInfo = ermittleBrutto();
+  const betragEl = $('ergebnis-betrag');
+
+  // Bei einer Nettoangabe oberhalb des abbildbaren Bereichs laesst sich kein Brutto
+  // zurueckrechnen. Dann wird ausdruecklich keine Zahl ausgegeben, statt eine Null zu
+  // zeigen, die wie ein Rechenergebnis aussieht.
+  if (bruttoInfo.rueckrechnung && bruttoInfo.rueckrechnung.grund) {
+    betragEl.textContent = 'kein Ergebnis möglich';
+    betragEl.classList.remove('ergebnis__betrag--negativ');
+    $('ergebnis-monat').textContent = '';
+    $('ergebnis-details').hidden = true;
+    const zusatz = $('ergebnis-zusatz');
+    zusatz.textContent = '';
+    const zeile = document.createElement('p');
+    zeile.className = 'ergebnis__vorspann';
+    zeile.textContent =
+      'Aus dieser Nettoangabe lässt sich kein Bruttoeinkommen zurückrechnen, weil sie oberhalb ' +
+      'des Bereichs liegt, den das Modell abbildet. Es wird deshalb bewusst kein Eurobetrag ' +
+      'ausgegeben. Bitte gib dein Einkommen brutto an.';
+    zusatz.appendChild(zeile);
+    analyseErgebnis = { analyse: null, bruttoInfo };
+    renderUnterstuetzen();
+    return;
+  }
+
   const analyse = analysiere({
     bruttoJahr: bruttoInfo.bruttoJahr ?? 0,
     kinder: zustand.kinder,
@@ -272,11 +323,10 @@ function baueErgebnis() {
     kapitalertragJahr: zustand.kapitalertrag,
   });
   analyseErgebnis = { analyse, bruttoInfo };
+  $('ergebnis-details').hidden = false;
 
   const nachId = new Map(vorschlaegeDaten.map((p) => [p.id, p]));
 
-  // Kopfzahl
-  const betragEl = $('ergebnis-betrag');
   betragEl.classList.remove('ergebnis__betrag--negativ');
 
   if (bruttoInfo.band) {
@@ -354,7 +404,7 @@ function baueErgebnis() {
     const li = document.createElement('li');
     li.textContent =
       `Überschneidung zwischen den Vorschlägen: ${formatiereBetrag(analyse.ergebnis.wechselwirkungJahr)} pro Jahr. ` +
-      'Die Einzelwirkungen überschneiden sich, weil sie sich gegenseitig verstärken. Maßgeblich ist die Zahl oben, nicht die Summe der Einzelwerte.';
+      'Jeder Einzelwert ist als Alleinwirkung gegenüber dem geltenden Recht gerechnet. Die Vorschläge wirken aber auf dieselbe Steuer, deshalb überschneiden sie sich und ihre Summe weicht von der Gesamtwirkung ab. Maßgeblich ist die Zahl oben, nicht die Summe der Einzelwerte.';
     liste.appendChild(li);
   }
 
@@ -370,14 +420,16 @@ function baueErgebnis() {
     if (!v.anwendbar) continue;
     const daten = nachId.get(v.id);
     if (!daten) continue;
-    karten.appendChild(kartenEintrag(v, daten, analyse));
+    karten.appendChild(kartenEintrag(v, daten, analyse, bruttoInfo));
   }
 
   // Karten der nicht bewerteten Programmpunkte
   const nichtBewertet = $('karten-nicht-bewertet');
   nichtBewertet.textContent = '';
   for (const daten of ohneEuro) {
-    nichtBewertet.appendChild(nichtBewertetEintrag(daten));
+    const zutreffend = analyse.vorschlaege.find((v) => v.id === daten.id);
+    const grund = zutreffend && !zutreffend.anwendbar ? zutreffend.nichtAnwendbarGrund : null;
+    nichtBewertet.appendChild(nichtBewertetEintrag(daten, grund));
   }
 
   renderUnterstuetzen();
@@ -498,6 +550,15 @@ function verdrahte() {
   $('zurueck-4').addEventListener('click', () => setzeSchritt(3));
 
   const abschliessen = () => {
+    // Ohne Quellendaten gibt es kein Ergebnis: ein Eurobetrag ohne ausgewiesene
+    // Berechnungsabdeckung waere nicht zulaessig.
+    if (vorschlaegeDaten.length === 0) {
+      $('kapital-fehler').textContent =
+        'Die Quellendaten konnten nicht geladen werden. Ohne sie wird kein Ergebnis ausgegeben. Bitte lade die Seite neu.';
+      kapital.focus();
+      meldeFehler();
+      return;
+    }
     zustand.kapitalertrag = leseZahl(kapital.value) ?? 0;
     zaehle('step_completed');
     zaehle('calculator_completed');

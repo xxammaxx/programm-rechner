@@ -74,13 +74,19 @@ jobs:
               issue = angelegt.data;
             }
 
-            const kommentare = await github.rest.issues.listComments({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              issue_number: issue.number,
-              per_page: 100,
-            });
-            const vorhanden = kommentare.data.find((k) => k.body && k.body.includes(MARKER));
+            // Alle Seiten durchsehen, damit der Marker auch dann gefunden wird, wenn
+            // spaeter weitere Kommentare hinzukommen. Sonst entstuende ein zweiter
+            // Marker-Kommentar, obwohl genau einer vorgesehen ist.
+            const kommentare = await github.paginate(
+              github.rest.issues.listComments,
+              {
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                per_page: 100,
+              },
+            );
+            const vorhanden = kommentare.find((k) => k.body && k.body.includes(MARKER));
 
             if (vorhanden) {
               await github.rest.issues.updateComment({

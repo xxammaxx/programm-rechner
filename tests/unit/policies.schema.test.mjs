@@ -42,7 +42,7 @@ test('Jeder Programmpunkt verweist auf die Originalquelle mit Seite', () => {
     assert.equal(p.source_type, 'party_programme', `${p.id} muss auf das Wahlprogramm verweisen`);
     assert.match(p.source_url, /^https:\/\//, `${p.id} braucht eine Quell-URL`);
     assert.equal(typeof p.source_page, 'number', `${p.id} braucht eine Seitenzahl`);
-    assert.ok(p.source_page > 0 && p.source_page <= 166, `${p.id}: Seite ${p.source_page} liegt ausserhalb des Dokuments`);
+    assert.ok(p.source_page > 0 && p.source_page <= 175, `${p.id}: Seite ${p.source_page} liegt ausserhalb der nummerierten Seiten`);
     assert.ok(p.exact_claim.length > 20, `${p.id} braucht ein woertliches Zitat`);
   }
 });

@@ -6,7 +6,7 @@
   "description": "Programm-Rechner: Welche direkt berechenbaren Auswirkungen hätten ausgewählte Vorschläge des AfD-Bundestagswahlprogramms 2025 auf meinen Haushalt?",
   "license": "MIT",
   "engines": {
-    "node": ">=20"
+    "node": ">=21"
   },
   "scripts": {
     "test": "node --test \"tests/unit/*.test.mjs\" \"tests/reference/*.test.mjs\"",
