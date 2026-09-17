@@ -27,7 +27,8 @@ function abschnitt(titel) {
 
 async function sammleEndungen(verzeichnis, endungen, gefunden = []) {
   for (const eintrag of await readdir(verzeichnis, { withFileTypes: true })) {
-    if (eintrag.name === 'node_modules' || eintrag.name.startsWith('.')) continue;
+    // Bauergebnisse und Abhaengigkeiten sind keine Quellen.
+    if (eintrag.name === 'node_modules' || eintrag.name === '_site' || eintrag.name.startsWith('.')) continue;
     const voll = join(verzeichnis, eintrag.name);
     if (eintrag.isDirectory()) await sammleEndungen(voll, endungen, gefunden);
     else if (endungen.includes(extname(eintrag.name))) gefunden.push(voll);
@@ -60,6 +61,7 @@ for (const datei of jsonDateien) {
 abschnitt('2. HTML-Struktur');
 
 const htmlDateien = (await sammleEndungen(wurzel, ['.html'])).filter((f) => !f.includes('node_modules'));
+const ausserhalbBau = (f) => !relative(wurzel, f).startsWith('_site');
 
 for (const datei of htmlDateien) {
   const rel = relative(wurzel, datei);
