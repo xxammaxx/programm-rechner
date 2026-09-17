@@ -14,7 +14,9 @@
     "test:e2e": "playwright test",
     "serve": "node tools/serve.mjs",
     "check": "node tools/check.mjs",
-    "test:reference": "node --test \"tests/reference/*.test.mjs\""
+    "test:reference": "node --test \"tests/reference/*.test.mjs\"",
+    "verify:world": "node tools/verify-world.mjs",
+    "build": "rm -rf _site && mkdir -p _site && cp *.html _site/ && cp -r assets data _site/ && touch _site/.nojekyll"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0"

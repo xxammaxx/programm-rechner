@@ -6,7 +6,11 @@ import { readFile, stat } from 'node:fs/promises';
 import { extname, join, normalize, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-const wurzel = resolve(fileURLToPath(new URL('..', import.meta.url)));
+// Wurzelverzeichnis und Port sind einstellbar. Damit laesst sich neben dem
+// Projektverzeichnis auch das zusammengestellte Auslieferungsverzeichnis pruefen.
+const wurzel = process.env.WURZEL
+  ? resolve(process.env.WURZEL)
+  : resolve(fileURLToPath(new URL('..', import.meta.url)));
 const port = Number(process.env.PORT ?? 4173);
 
 const typen = {
