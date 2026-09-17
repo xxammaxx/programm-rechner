@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>So rechnen wir — Programm-Rechner</title>
+<meta name="description" content="Rechenweg, Formeln, Annahmen, einbezogene und ausgeschlossene Vorschläge sowie bekannte Grenzen des Programm-Rechners.">
+<link rel="canonical" href="https://xxammaxx.github.io/programm-rechner/methodik.html">
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="umschlag">
+<header class="kopf">
+  <p class="kopf__marke">Programm-Rechner</p>
+  <h1 class="kopf__titel">So rechnen wir</h1>
+  <p class="kopf__unterzeile">Rechenweg, Annahmen, Quellen und Grenzen — vollständig offengelegt.</p>
+</header>
+
+<main class="textseite">
+
+<div class="hinweis hinweis--pflichthinweis" role="note">
+  <p><strong>V1 untersucht ausgewählte, quantifizierbare Vorschläge des AfD-Bundestagswahlprogramms 2025. Dies ist keine Wahlempfehlung und keine vollständige Bewertung des Programms.</strong></p>
+</div>
+
+<h2>1. Grundlagen</h2>
+<table>
+  <caption>Stand der Rechnung</caption>
+  <tbody>
+    <tr><th scope="row">Rechtsstand der Steuerrechnung</th><td>Veranlagungszeitraum 2026</td></tr>
+    <tr><th scope="row">Programmstand</th><td>AfD-Bundestagswahlprogramm 2025, verabschiedet auf dem 16. Bundesparteitag am 11.–12. Januar 2025 in Riesa</td></tr>
+    <tr><th scope="row">Letzte inhaltliche Prüfung</th><td>17. September 2026</td></tr>
+    <tr><th scope="row">Berechnungseinheit</th><td>Ein Haushalt, ein Veranlagungsjahr</td></tr>
+    <tr><th scope="row">Währung</th><td>Euro, ganzzahlig gerundet</td></tr>
+  </tbody>
+</table>
+
+<p>Alle Werte des geltenden Rechts wurden direkt aus den Primärquellen abgerufen und gegen den amtlichen Programmablaufplan des Bundesministeriums der Finanzen für 2026 geprüft. Der Programmablaufplan ist die nach § 39b Abs. 6 EStG vorgeschriebene Berechnungsvorschrift und damit die belastbarste verfügbare Referenz.</p>
+
+<h2>2. Der Rechenweg im Überblick</h2>
+<ol>
+  <li>Aus der monatlichen Angabe wird ein Bruttojahreswert gebildet. Bei einer Nettoangabe wird das Brutto nach einem offengelegten Modell zurückgerechnet und als Bandbreite ausgewiesen.</li>
+  <li>Vom Bruttojahreswert werden der Arbeitnehmer-Pauschbetrag, der Sonderausgaben-Pauschbetrag und, bei Alleinerziehenden, der Entlastungsbetrag abgezogen. Hinzu kommen die abzugsfähigen Vorsorgeaufwendungen.</li>
+  <li>Das Ergebnis ist das zu versteuernde Einkommen, abgerundet auf volle Euro.</li>
+  <li>Darauf wird der Einkommensteuertarif angewendet, bei Zusammenveranlagung über das Splittingverfahren.</li>
+  <li>Der Kinderfreibetrag mindert das Einkommen. Ob der Kinderfreibetrag oder das Kindergeld günstiger ist, entscheidet der Familienleistungsausgleich.</li>
+  <li>Der Solidaritätszuschlag wird auf die Steuer mit Kinderfreibetrag berechnet.</li>
+  <li>Auf Kapitalerträge fällt die Abgeltungsteuer an, nach Abzug des Sparer-Pauschbetrags.</li>
+  <li>Derselbe Rechenweg wird ein zweites Mal mit den Programmparametern durchgeführt. Die Differenz ist das ausgewiesene Ergebnis.</li>
+</ol>
+
+<h2>3. Formeln</h2>
+
+<h3>Einkommensteuertarif, § 32a Abs. 1 EStG, Veranlagungszeitraum 2026</h3>
+<p>Mit <code>x</code> als dem auf volle Euro abgerundeten zu versteuernden Einkommen, <code>y</code> als einem Zehntausendstel des den Grundfreibetrag übersteigenden Teils und <code>z</code> als einem Zehntausendstel des 17.799 Euro übersteigenden Teils:</p>
+<table>
+  <caption>Tarifzonen 2026</caption>
+  <thead><tr><th scope="col">Zone</th><th scope="col">zu versteuerndes Einkommen</th><th scope="col">Steuerbetrag</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>bis 12.348 €</td><td>0</td></tr>
+    <tr><td>2</td><td>12.349 € bis 17.799 €</td><td>(914,51 · y + 1.400) · y</td></tr>
+    <tr><td>3</td><td>17.800 € bis 69.878 €</td><td>(173,10 · z + 2.397) · z + 1.034,87</td></tr>
+    <tr><td>4</td><td>69.879 € bis 277.825 €</td><td>0,42 · x − 11.135,63</td></tr>
+    <tr><td>5</td><td>ab 277.826 €</td><td>0,45 · x − 19.470,38</td></tr>
+  </tbody>
+</table>
+<p>Das zu versteuernde Einkommen und der Steuerbetrag werden auf volle Euro abgerundet. Bei Zusammenveranlagung beträgt die Steuer das Zweifache des Betrags für die Hälfte des zu versteuernden Einkommens.</p>
+
+<h3>Solidaritätszuschlag, §§ 3 und 4 SolzG 1995</h3>
+<p>Der Zuschlag beträgt 5,5 Prozent der Bemessungsgrundlage, höchstens aber 11,9 Prozent des Unterschieds zwischen Bemessungsgrundlage und Freigrenze. Die Freigrenzen 2026 betragen 20.350 Euro, bei Zusammenveranlagung 40.700 Euro. Bruchteile eines Cents bleiben außer Ansatz. Die Milderungszone endet rechnerisch bei dem 1,859375-fachen der Freigrenze; ab dort gilt der volle Satz.</p>
+<p>Bemessungsgrundlage ist nach § 3 Abs. 2 SolzG 1995 die Steuer, die unter Berücksichtigung der Freibeträge nach § 32 Abs. 6 EStG festzusetzen wäre. Der Kinderfreibetrag wird für den Solidaritätszuschlag also immer angesetzt.</p>
+
+<h3>Familienleistungsausgleich, § 31 EStG</h3>
+<p>Das Kindergeld ist nach § 31 Satz 3 EStG eine Steuervergütung. Der Haushalt erhält die günstigere der beiden Varianten: Entweder mindert der Kinderfreibetrag das Einkommen, oder das Kindergeld wird angerechnet. Rechnerisch ist die Belastung deshalb <code>Tarifsteuer − Höchstbetrag aus (Ersparnis durch den Kinderfreibetrag, Kindergeld)</code>.</p>
+
+<h3>Abgeltungsteuer, § 32d EStG</h3>
+<p>25 Prozent auf die Kapitalerträge nach Abzug des Sparer-Pauschbetrags von 1.000 Euro, bei Zusammenveranlagung 2.000 Euro.</p>
+
+<h2>4. Einbezogene Vorschläge</h2>
+<p>Die folgenden Vorschläge gehen in das Ergebnis ein. Jeder ist im Programm wörtlich belegt, mit Seitenzahl.</p>
+<table>
+  <caption>Berechnete Vorschläge</caption>
+  <thead><tr><th scope="col">Vorschlag</th><th scope="col">Programmseite</th><th scope="col">Einordnung</th></tr></thead>
+  <tbody>
+    <tr><td>Grundfreibetrag steigt auf 15.000 Euro</td><td>58</td><td>Direkt berechnet, mit Methodenhinweis</td></tr>
+    <tr><td>Abschaffung des Solidaritätszuschlags für alle</td><td>14</td><td>Direkt berechnet</td></tr>
+    <tr><td>Sparer-Pauschbetrag steigt auf 6.672 Euro</td><td>60</td><td>Direkt berechnet, nur bei angegebenen Kapitalerträgen</td></tr>
+    <tr><td>Familiensplitting</td><td>59</td><td>Modellannahme</td></tr>
+  </tbody>
+</table>
+
+<h3>Methodenhinweis zum Grundfreibetrag</h3>
+<p>Das Programm beziffert den Grundfreibetrag mit 15.000 Euro, fordert zusätzlich aber nur unbestimmt eine „korrespondierende Verschiebung von weiteren Tarifeckwerten bis hin zum Spitzensteuersatz“. Wie weit diese Verschiebung reichen soll, steht nicht im Programm.</p>
+<p>Umgesetzt wird deshalb die Methode der parallelen Tarifverschiebung: Der gesamte Tarif wird um die Differenz von 2.652 Euro nach rechts verschoben. Die Progression und die Stetigkeit des Tarifs bleiben dadurch unverändert. Es gilt rechnerisch: neuer Tarif bei <code>x</code> entspricht altem Tarif bei <code>x − 2.652</code>.</p>
+<p>Die Alternative — nur den Grundfreibetrag anheben und alle übrigen Eckwerte stehen lassen — ist rechnerisch nicht eindeutig, weil sie den Tarif an der Zonengrenze unstetig macht: es entstünde ein Sprung im Steuerbetrag. Diese Variante wird deshalb nicht als Hauptzahl verwendet.</p>
+
+<h3>Annahmen zum Familiensplitting</h3>
+<p>Das Programm nennt nur das Prinzip: die Summe der Einkünfte aller Familienmitglieder geteilt durch die Zahl der Familienmitglieder. Es nennt keine Bemessungsgrundlage im Steuerrechtssinn und keine Obergrenze. Für die Rechnung wurden deshalb folgende Annahmen gesetzt und offengelegt:</p>
+<ul>
+  <li>Teiler ist die Zahl der Familienmitglieder, also zwei Erwachsene plus die Zahl der Kinder.</li>
+  <li>Kinder werden mitgezählt und haben kein eigenes zu versteuerndes Einkommen.</li>
+  <li>Als Bemessungsgrundlage dient das zu versteuernde Einkommen, nicht der Rechtsbegriff „Einkünfte“.</li>
+  <li>Es gibt keine Deckelung des Vorteils.</li>
+  <li>Das Familiensplitting tritt an die Stelle des Ehegattensplittings, nicht zusätzlich dazu.</li>
+  <li>Der Kinderfreibetrag bleibt in der Höhe des geltenden Rechts bestehen. Das Programm kündigt auf Seite 148 zusätzlich eine Anhebung des Kinderfreibetrages an, beziffert sie aber nicht.</li>
+  <li>Das Kindergeld bleibt in der Höhe des geltenden Rechts bestehen.</li>
+</ul>
+<p>Dieser Vorschlag ist die einzige Modellannahme im Rechner. Er wird deshalb im Ergebnis getrennt von den direkt berechneten Vorschlägen ausgewiesen.</p>
+
+<h2>5. Ausgeschlossene Vorschläge</h2>
+<p>Diese Programmpunkte werden ausdrücklich <em>nicht</em> in Euro bewertet. Für sie gibt es keinen belastbaren persönlichen Betrag, weil entweder der Parameter im Programm fehlt oder der Effekt am Verbrauch hängt, der nicht erhoben wird.</p>
+<ul>
+  <li>Abschaffung aller CO₂-Abgaben (Seite 57). Der Effekt hängt am Verbrauch fossiler Brennstoffe.</li>
+  <li>Reduzierung der Energiesteuer und Senkung der Stromsteuer auf das Minimum (Seite 13). Kein Zielniveau beziffert, zusätzlich verbrauchsabhängig.</li>
+  <li>Abschaffung der Grundsteuer (Seite 58). Ohne Grundbesitz, Messbetrag und Hebesatz nicht bestimmbar. Zudem plant das Programm eine vollumfängliche Gegenfinanzierung über einen Zuschlag auf die Einkommensteuer, der nicht beziffert ist.</li>
+  <li>Abschaffung der Vermögen- und Erbschaftsteuer (Seite 60). Ereignisabhängig, kein laufender Jahresbetrag.</li>
+  <li>Mehrwertsteuer für Gastronomie auf 7 Prozent (Seite 57). Hängt an den Ausgaben, die nicht erhoben werden.</li>
+  <li>Mehrwertsteuer für Artikel des Kinderbedarfs auf 7 Prozent (Seite 148). Der Warenkorb ist nicht definiert.</li>
+  <li>Aufhebung der Grunderwerbsteuer für Selbstnutzer (Seite 36). Einmalig beim Erwerb, kein Jahresbetrag.</li>
+  <li>Anhebung des Kinderfreibetrages (Seite 148). Angekündigt, aber nicht beziffert. Eine Zahl zu wählen wäre eine erfundene Programmaussage.</li>
+</ul>
+<p>Aus demselben Grund wird die <strong>Werbungskostenpauschale von 2.000 Euro</strong> nicht gerechnet. Sie steht nicht im Wahlprogramm, sondern im Antrag der AfD-Bundestagsfraktion vom 15. Oktober 2024 (BT-Drucksache 20/13356). Die Zeichenfolgen „Werbungskostenpauschale“ und „Pendlerpauschale“ kommen im 166-seitigen Programm kein einziges Mal vor.</p>
+
+<h2>6. Was das Ergebnis nicht ist</h2>
+<div class="hinweis hinweis--warnung">
+  <p class="hinweis__titel">Keine Gesamtbilanz des Haushalts</p>
+  <p>Gerechnet werden nur Steuern und Kindergeld. Nicht enthalten sind Wohngeld, Bürgergeld, Grundsicherung, Kinderzuschlag und die Sozialversicherungsbeiträge im Szenarienvergleich.</p>
+  <p>Das ist eine echte Grenze, nicht eine Formalie. Das ZEW-Gutachten kommt für einen Alleinverdiener-Haushalt mit zwei Kindern und 40.000 Euro Bruttoeinkommen auf ein <em>Minus</em> von 440 Euro und führt das ausdrücklich auf die Anrechnungsregeln beim Wohngeld zurück. Ein reines Steuermodell kann dieses Ergebnis nicht reproduzieren. Wer Transferleistungen bezieht, sollte die ausgewiesene Zahl deshalb nicht als persönliche Entlastung lesen.</p>
+</div>
+<p>Ebenso ist die Zahl die Summe der oben genannten Vorschläge. Sie ist nicht das Programm als Ganzes und keine Bewertung des Programms.</p>
+
+<h2>7. Externe Studien und Quellenkonflikt</h2>
+<p>Als externe Referenz wird das ZEW-Gutachten „Reformvorschläge der Parteien zur Bundestagswahl 2025“ (Mannheim, Januar 2025) herangezogen. Es rechnet auf Rechtsstand Juli 2024 mit dem Mikrosimulationsmodell ZEW-EviSTA und berücksichtigt Transfers, die V1 nicht abbildet. <strong>Keine einzige Zahl des Rechners wird aus diesem Gutachten abgeleitet.</strong></p>
+<p>Es gibt eine belegte Abweichung, die ausdrücklich geprüft und hier offengelegt wird:</p>
+<table>
+  <caption>Abweichung zwischen Gutachten und verabschiedetem Programm</caption>
+  <thead><tr><th scope="col">Parameter</th><th scope="col">ZEW-Gutachten</th><th scope="col">Verabschiedetes Programm</th></tr></thead>
+  <tbody>
+    <tr><td>Sparer-Pauschbetrag</td><td>2.400 €</td><td>6.672 € (Seite 60)</td></tr>
+  </tbody>
+</table>
+<p>Die 2.400 Euro stammen aus dem Leitantrag der Bundesprogrammkommission (Stand 28. November 2024), also aus der Entwurfsfassung vor dem Parteitag. Das Gutachten weist diese Abweichung nicht aus. Der Rechner übernimmt den Wert der verabschiedeten Fassung und mischt keine Parameter. Es gilt durchgängig: Bei Abweichungen entscheidet die verabschiedete Programmfassung, und die Abweichung wird erklärt statt verdeckt.</p>
+<p>Aus demselben Grund werden die Posten Werbungskostenpauschale 2.000 Euro und Kinderfreibetrag 12.000 Euro, die das Gutachten unter dem AfD-Programm aufführt, nicht gerechnet: Sie stammen aus der Bundestagsdrucksache 20/13356, nicht aus dem Wahlprogramm.</p>
+
+<h2>8. Bekannte Grenzen</h2>
+<ul>
+  <li>Der Rechner bildet das Veranlagungsverfahren ab, nicht den Lohnsteuerabzug. Die amtlichen Lohnsteuertabellen werden ausdrücklich nicht beansprucht zu reproduzieren, weil die Vorsorgepauschale nach § 39b EStG einer anderen Systematik folgt als der Sonderausgabenabzug nach § 10 EStG.</li>
+  <li>Es wird nur das Arbeitseinkommen abgebildet. Selbständigkeit, Vermietung, Gewinne und Verluste bleiben außen vor.</li>
+  <li>Für Alleinerziehende wird der halbe Kinderfreibetrag angesetzt; eine Übertragung des anderen Elternteils wird nicht modelliert.</li>
+  <li>Der Zusatzbeitrag der Krankenkasse wird mit dem amtlichen Durchschnittssatz von 2,9 Prozent angesetzt. Der kassenindividuelle Satz kann abweichen. Auf den Szenarienvergleich wirkt das nicht, weil er in beiden Szenarien identisch eingeht.</li>
+  <li>Die Günstigerprüfung nach § 32d Abs. 6 EStG und die Kirchensteuer werden nicht modelliert.</li>
+  <li>Die Rückrechnung von Netto auf Brutto ist wegen der Abrundung des Tarifs auf volle Euro nicht exakt eindeutig. Sie wird deshalb als Bandbreite ausgewiesen.</li>
+  <li>Die Regeneration des amtlichen Lohnsteuertabellenwerts aus dem veröffentlichten Programmablaufplan ist nicht vollständig gelungen. Die verbleibende Differenz von 6 Euro beim dortigen Beispielhaushalt ist offengelegt. Tarif und Solidaritätszuschlag selbst werden dagegen auf einem dichten Wertegitter deckungsgleich mit den amtlichen Modulen UPTAB26 und MSOLZ gerechnet.</li>
+</ul>
+
+<h2>9. Wie das geprüft wird</h2>
+<p>Der Rechenkern wird automatisiert geprüft: gegen die unabhängig aus dem Gesetzeswortlaut berechneten Tarifwerte zweier Jahre, gegen die amtlichen Module des Programmablaufplans 2026 auf einem dichten Wertegitter, gegen die Stetigkeit und Monotonie des Tarifs an allen Zonengrenzen, gegen den amtlichen Wert des Kranken- und Pflegeversicherungsanteils der Vorsorgepauschale und gegen die Günstigerprüfung des Familienleistungsausgleichs. Eine zweite, bewusst getrennte Referenzschicht prüft die amtlichen Parameter und die dokumentierten Abweichungen.</p>
+<p>Der Quellcode und alle Prüfungen sind öffentlich einsehbar.</p>
+
+<h2>10. Keine Wahlempfehlung</h2>
+<p>Der Rechner informiert, er überzeugt nicht. Er empfiehlt keine Partei, ordnet keine Parteien, bewirkt keine Stimmabgabe und bewertet kein Programm als Ganzes. Nutzungszahlen werden nicht genutzt, um politische Aussagen zu verändern. Zulässige Verbesserungen betreffen Bedienbarkeit, Klarheit, Barrierefreiheit, Zuverlässigkeit, Ladezeit, Fehlerbehandlung und Navigation. Ausgeschlossen sind Änderungen an Quellenauslegung, Formeln, politischer Rahmung und an der Auswahl der Belege.</p>
+
+<p class="zurueck-oben"><a href="index.html">← Zurück zum Rechner</a> · <a href="quellen.html">Quellen</a></p>
+</main>
+
+<footer class="fuss">
+  <ul>
+    <li><a href="index.html">Rechner</a></li>
+    <li><a href="quellen.html">Quellen</a></li>
+    <li><a href="datenschutz.html">Datenschutz</a></li>
+    <li><a href="impressum.html">Impressum</a></li>
+  </ul>
+  <p>Rechtsstand 2026. Letzte inhaltliche Prüfung: 17. September 2026. Keine Wahlempfehlung.</p>
+</footer>
+</div>
+</body>
+</html>

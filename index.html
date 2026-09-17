@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Programm-Rechner — Was bedeuten berechenbare Vorschläge für einen Haushalt?</title>
+<meta name="description" content="Informationsrechner zu ausgewählten, direkt berechenbaren Vorschlägen des AfD-Bundestagswahlprogramms 2025 und ihren möglichen Auswirkungen auf einen Haushalt. Keine Wahlempfehlung.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://xxammaxx.github.io/programm-rechner/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Programm-Rechner">
+<meta property="og:title" content="Programm-Rechner — Was bedeuten berechenbare Vorschläge für einen Haushalt?">
+<meta property="og:description" content="Welche direkt berechenbaren Auswirkungen hätten ausgewählte Vorschläge des AfD-Bundestagswahlprogramms 2025 auf meinen Haushalt? Rechenweg, Annahmen und Originalquellen sind offen einsehbar. Keine Wahlempfehlung.">
+<meta property="og:url" content="https://xxammaxx.github.io/programm-rechner/">
+<meta property="og:image" content="https://xxammaxx.github.io/programm-rechner/assets/img/vorschau.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Programm-Rechner: Informationsrechner zu ausgewählten Vorschlägen des AfD-Bundestagswahlprogramms 2025. Keine Wahlempfehlung.">
+<meta property="og:locale" content="de_DE">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="stylesheet" href="assets/css/style.css">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body>
+<div class="umschlag">
+
+  <header class="kopf">
+    <p class="kopf__marke">Programm-Rechner</p>
+    <h1 class="kopf__titel">Was bedeuten berechenbare Vorschläge für einen Haushalt?</h1>
+  </header>
+
+  <!-- Pflicht- und Dauerhinweis. Steht auf jeder Ansicht sichtbar ueber dem Rechner. -->
+  <div class="hinweis hinweis--pflichthinweis hinweis--kompakt" role="note">
+    <p><strong>V1 untersucht ausgewählte, quantifizierbare Vorschläge des AfD-Bundestagswahlprogramms 2025. Dies ist keine Wahlempfehlung und keine vollständige Bewertung des Programms.</strong></p>
+  </div>
+
+  <main id="rechner">
+
+    <div class="fortschritt" id="fortschritt" hidden>
+      <p class="fortschritt__text" id="fortschritt-text"></p>
+      <progress class="fortschritt__balken" id="fortschritt-balken" max="4" value="1" aria-labelledby="fortschritt-text">Schritt 1 von 4</progress>
+    </div>
+
+    <!-- Schritt 1: Einkommen -->
+    <section class="schritt" id="schritt-1" aria-labelledby="frage-1">
+      <h2 class="schritt__frage" id="frage-1">Wie viel verdienst du ungefähr im Monat?</h2>
+      <p class="schritt__hilfe">Eine grobe Zahl genügt. Es geht nur um die Größenordnung.</p>
+
+      <div class="feld">
+        <label class="feld__label" for="einkommen">Monatliches Einkommen</label>
+        <div class="eingabe-zeile">
+          <input class="eingabe" id="einkommen" type="text" inputmode="decimal" autocomplete="off"
+                 enterkeyhint="next" aria-describedby="einkommen-fehler" placeholder="2.500">
+          <span class="eingabe-einheit" aria-hidden="true">€</span>
+        </div>
+        <p class="feld__hinweis" id="einkommen-fehler" role="alert"></p>
+      </div>
+
+      <fieldset class="feld feld--gruppe">
+        <legend class="feld__label">Ist das brutto oder netto?</legend>
+        <p class="feld__hinweis" id="modus-hinweis">Mit Brutto können wir genauer rechnen. Wenn du nur Netto kennst, geht auch ein grober Check.</p>
+        <div class="auswahl auswahl--zwei" role="radiogroup" aria-describedby="modus-hinweis">
+          <label class="option">
+            <input type="radio" name="modus" value="brutto" checked>
+            <span>BRUTTO<span class="option__zusatz">empfohlen</span></span>
+          </label>
+          <label class="option">
+            <input type="radio" name="modus" value="netto">
+            <span>NETTO<span class="option__zusatz">grober Check</span></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <p class="datenschutz-zeile" role="note">
+        <span aria-hidden="true">🔒</span>
+        Deine Angaben bleiben auf diesem Gerät. Sie werden nicht gespeichert und nicht gesendet.
+        <a href="datenschutz.html">Mehr zum Datenschutz</a>
+      </p>
+
+      <div class="schaltflaechen">
+        <button class="schaltflaeche" type="button" id="weiter-1">Weiter</button>
+      </div>
+    </section>
+
+    <!-- Schritt 2: Haushalt -->
+    <section class="schritt" id="schritt-2" aria-labelledby="frage-2" hidden>
+      <h2 class="schritt__frage" id="frage-2">Wie lebst du?</h2>
+      <p class="schritt__hilfe">Das entscheidet, ob das Splittingverfahren angewendet wird. Es gilt nur für Verheiratete, die zusammen veranlagt werden.</p>
+
+      <fieldset class="feld feld--gruppe">
+        <legend class="feld__label">Haushaltstyp</legend>
+        <div class="auswahl" role="radiogroup">
+          <label class="option">
+            <input type="radio" name="haushalt" value="allein" checked>
+            <span>Alleinstehend</span>
+          </label>
+          <label class="option">
+            <input type="radio" name="haushalt" value="verheiratet">
+            <span>Verheiratet, Zusammenveranlagung</span>
+          </label>
+        </div>
+      </fieldset>
+
+      <p class="datenschutz-zeile" role="note"><span aria-hidden="true">🔒</span> Auch diese Angabe bleibt auf deinem Gerät.</p>
+
+      <div class="schaltflaechen">
+        <button class="schaltflaeche schaltflaeche--zweit" type="button" id="zurueck-2">Zurück</button>
+        <button class="schaltflaeche" type="button" id="weiter-2">Weiter</button>
+      </div>
+    </section>
+
+    <!-- Schritt 3: Kinder -->
+    <section class="schritt" id="schritt-3" aria-labelledby="frage-3" hidden>
+      <h2 class="schritt__frage" id="frage-3">Wie viele Kinder leben in deinem Haushalt?</h2>
+      <p class="schritt__hilfe">Gemeint sind Kinder, für die Kindergeld zusteht. Wenn du unsicher bist, lass die Zahl bei 0.</p>
+
+      <fieldset class="feld feld--gruppe">
+        <legend class="feld__label">Anzahl der Kinder</legend>
+        <div class="auswahl auswahl--zwei" role="radiogroup">
+          <label class="option"><input type="radio" name="kinder" value="0" checked><span>Keine</span></label>
+          <label class="option"><input type="radio" name="kinder" value="1"><span>1 Kind</span></label>
+          <label class="option"><input type="radio" name="kinder" value="2"><span>2 Kinder</span></label>
+          <label class="option"><input type="radio" name="kinder" value="3"><span>3 Kinder</span></label>
+          <label class="option"><input type="radio" name="kinder" value="4"><span>4 Kinder</span></label>
+          <label class="option"><input type="radio" name="kinder" value="5"><span>5 oder mehr</span></label>
+        </div>
+      </fieldset>
+
+      <div class="schaltflaechen">
+        <button class="schaltflaeche schaltflaeche--zweit" type="button" id="zurueck-3">Zurück</button>
+        <button class="schaltflaeche" type="button" id="weiter-3">Weiter</button>
+      </div>
+    </section>
+
+    <!-- Schritt 4: Kapitalertraege, optional -->
+    <section class="schritt" id="schritt-4" aria-labelledby="frage-4" hidden>
+      <h2 class="schritt__frage" id="frage-4">Hast du Kapitalerträge im Jahr?</h2>
+      <p class="schritt__hilfe">Gemeint sind Zinsen, Dividenden oder Erträge aus Fonds. Wenn du es nicht weißt, kannst du den Schritt überspringen. Dann wird der Sparer-Pauschbetrag nicht in Euro bewertet.</p>
+
+      <div class="feld">
+        <label class="feld__label" for="kapital">Kapitalerträge pro Jahr, ungefähr</label>
+        <div class="eingabe-zeile">
+          <input class="eingabe" id="kapital" type="text" inputmode="decimal" autocomplete="off"
+                 enterkeyhint="done" aria-describedby="kapital-fehler" placeholder="0">
+          <span class="eingabe-einheit" aria-hidden="true">€</span>
+        </div>
+        <p class="feld__hinweis" id="kapital-fehler" role="alert"></p>
+      </div>
+
+      <div class="schaltflaechen">
+        <button class="schaltflaeche schaltflaeche--zweit" type="button" id="zurueck-4">Zurück</button>
+        <button class="schaltflaeche" type="button" id="weiter-4">Ergebnis anzeigen</button>
+        <button class="schaltflaeche schaltflaeche--still" type="button" id="ueberspringen-4">Keine Angabe machen</button>
+      </div>
+    </section>
+
+    <!-- Ergebnis -->
+    <section class="schritt" id="ergebnis" aria-labelledby="ergebnis-titel" hidden>
+      <p class="ergebnis__label">Dein Ergebnis</p>
+      <h2 class="nur-vorlesen" id="ergebnis-titel">Dein Ergebnis</h2>
+      <p class="ergebnis__vorspann" id="ergebnis-vorspann">Unter den derzeit zuverlässig berechenbaren Vorschlägen ergibt sich:</p>
+      <p class="ergebnis__betrag" id="ergebnis-betrag">—</p>
+      <p class="ergebnis__monat" id="ergebnis-monat"></p>
+
+      <div id="ergebnis-zusatz"></div>
+
+      <div class="abdeckung" id="abdeckung">
+        <p class="abdeckung__titel">Berechnungsabdeckung</p>
+        <ul id="abdeckung-liste"></ul>
+      </div>
+
+      <div class="hinweis hinweis--warnung" id="transfer-hinweis">
+        <p class="hinweis__titel">Was hier nicht drinsteht</p>
+        <p>Gerechnet werden nur Steuern und Kindergeld. Nicht enthalten sind Wechselwirkungen mit <strong>Wohngeld, Bürgergeld, Grundsicherung oder Kinderzuschlag</strong>. Diese Leistungen werden auf das Einkommen angerechnet und können einen Teil der Entlastung wieder aufheben.</p>
+        <p>Wer eine dieser Leistungen bezieht, sollte die Zahl nicht als persönliche Entlastung lesen. Das ZEW-Gutachten zeigt genau einen solchen Gegenlaufeffekt.</p>
+      </div>
+
+      <h3>Die einzelnen Vorschläge</h3>
+      <ul class="karten" id="karten"></ul>
+
+      <h3>Programmpunkte ohne Eurobetrag</h3>
+      <p id="nicht-bewertet-text">Die folgenden Punkte lassen sich keinem Haushalt seriös in Euro zuordnen. Sie werden deshalb nicht berechnet und nicht als Zahl ausgegeben.</p>
+      <ul class="karten" id="karten-nicht-bewertet"></ul>
+
+      <div class="schaltflaechen">
+        <button class="schaltflaeche schaltflaeche--zweit" type="button" id="zurueck-ergebnis">Angaben ändern</button>
+        <a class="schaltflaeche schaltflaeche--zweit schaltflaeche--link" href="methodik.html" id="link-methodik">So rechnen wir</a>
+      </div>
+
+      <div id="unterstuetzen-bereich" hidden></div>
+      <div id="zaehler-bereich" hidden></div>
+    </section>
+
+  </main>
+
+  <footer class="fuss">
+    <ul>
+      <li><a href="methodik.html">So rechnen wir</a></li>
+      <li><a href="quellen.html">Quellen</a></li>
+      <li><a href="datenschutz.html">Datenschutz</a></li>
+      <li><a href="impressum.html">Impressum</a></li>
+    </ul>
+    <p>Rechtsstand 2026. Programmstand: AfD-Bundestagswahlprogramm 2025, verabschiedet am 11.–12. Januar 2025 in Riesa. Letzte Prüfung: 17. September 2026.</p>
+    <p>Dieser Rechner gibt keine Wahlempfehlung und bewertet kein Wahlprogramm als Ganzes.</p>
+  </footer>
+
+</div>
+<script type="module" src="assets/js/ui/app.js"></script>
+</body>
+</html>

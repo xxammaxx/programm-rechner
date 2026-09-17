@@ -1,0 +1,101 @@
+name: LIVE PRODUCT METRICS
+
+# Aktualisiert taeglich den einen kanonischen Kommentar im Issue "LIVE PRODUCT METRICS".
+# Der Kommentar wird ueber den Marker <!-- live-product-metrics --> wiedergefunden und
+# aktualisiert, nicht neu angelegt.
+#
+# Erforderliches Geheimnis: GOATCOUNTER_API_KEY (Repository-Secret).
+# Fehlt es, wird ehrlich METRICS_STATUS=ANALYTICS_UNCONFIGURED gemeldet und keine Zahl
+# erfunden. GITHUB_TOKEN kommt aus dem Lauf selbst und hat hier nur contents:read und
+# issues:write. Kein Geheimnis liegt jemals im Auslieferungscode.
+#
+# Hinweis: GitHub kann geplante Workflows in oeffentlichen, inaktiven Repositories nach
+# 60 Tagen abschalten. Der Frischeprüfung (METRICS_STALE) erkennt genau das.
+
+on:
+  schedule:
+    - cron: '15 6 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: live-product-metrics
+  cancel-in-progress: false
+
+jobs:
+  messen:
+    name: Messwerte abrufen und Kommentar aktualisieren
+    runs-on: ubuntu-latest
+    steps:
+      - name: Quellcode holen
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # actions/checkout v4
+
+      - name: Messwerte abrufen
+        id: werte
+        env:
+          GOATCOUNTER_API_KEY: ${{ secrets.GOATCOUNTER_API_KEY }}
+        run: node tools/metriken.mjs
+
+      - name: Kommentar aktualisieren
+        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # actions/github-script v7
+        env:
+          BERICHT: ${{ steps.werte.outputs.bericht }}
+        with:
+          script: |
+            const MARKER = '<!-- live-product-metrics -->';
+            const TITEL = 'LIVE PRODUCT METRICS';
+            const bericht = process.env.BERICHT || '';
+            const inhalt = `${MARKER}\n${bericht}`;
+
+            const suche = await github.rest.search.issuesAndPullRequests({
+              q: `repo:${context.repo.owner}/${context.repo.repo} is:issue in:title "${TITEL}"`,
+            });
+            let issue = suche.data.items.find((i) => i.title === TITEL);
+
+            if (!issue) {
+              const angelegt = await github.rest.issues.create({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                title: TITEL,
+                body: [
+                  'Dieses Issue wird automatisch vom Workflow **LIVE PRODUCT METRICS** gepflegt.',
+                  '',
+                  'Es enthaelt **einen** Kommentar, der taeglich aktualisiert wird. Der Kommentar traegt den Marker `<!-- live-product-metrics -->`.',
+                  '',
+                  'Enthalten sind ausschliesslich aggregierte Nutzungszahlen. Keine personenbezogenen Daten, keine Haushaltsergebnisse, keine politischen Merkmale.',
+                  '',
+                  'Hinweis: GitHub kann geplante Workflows in oeffentlichen, inaktiven Repositories nach 60 Tagen abschalten. Ist der Zeitstempel im Kommentar zu alt, gilt `METRICS_STALE`.',
+                ].join('\n'),
+                labels: [],
+              });
+              issue = angelegt.data;
+            }
+
+            const kommentare = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issue.number,
+              per_page: 100,
+            });
+            const vorhanden = kommentare.data.find((k) => k.body && k.body.includes(MARKER));
+
+            if (vorhanden) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: vorhanden.id,
+                body: inhalt,
+              });
+              core.info(`Kommentar ${vorhanden.id} aktualisiert.`);
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: issue.number,
+                body: inhalt,
+              });
+              core.info('Kommentar neu angelegt.');
+            }

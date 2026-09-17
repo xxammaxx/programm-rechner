@@ -1,0 +1,92 @@
+name: Veroeffentlichen
+
+# Prueft bei jedem Push auf main den Rechenkern und das rechtliche Tor.
+#
+# Solange die Betreiberangaben in assets/js/config.js fehlen, wird die Veroeffentlichung
+# uebersprungen und im Lauf ausdruecklich als offen gemeldet. Es wird nichts
+# veroeffentlicht, was kein zulaessiges Impressum hat.
+#
+# Derzeitiger Stand: LEGAL_OWNER_DATA=REQUIRED_FOR_PUBLICATION,
+# Klassifizierung BLOCKED_EXTERNAL_OWNER_ACTION. GitHub Pages ist deshalb zusaetzlich
+# bewusst noch nicht in den Repository-Einstellungen eingeschaltet.
+#
+# Freischalten: Betreiberangaben unter KONFIGURATION.betreiber in assets/js/config.js
+# eintragen, vorhanden auf true setzen, Pages in den Repository-Einstellungen auf
+# "GitHub Actions" stellen. Danach veroeffentlicht der naechste Push automatisch.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  pruefen:
+    name: Pruefen
+    runs-on: ubuntu-latest
+    outputs:
+      rechtliches_tor: ${{ steps.tor.outputs.zulaessig }}
+    steps:
+      - name: Quellcode holen
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # actions/checkout v4
+
+      - name: Node einrichten
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # actions/setup-node v4
+        with:
+          node-version: '24'
+
+      - name: Abhaengigkeiten installieren
+        run: npm ci
+
+      - name: Rechenkern und Referenzwerte pruefen
+        run: npm test
+
+      - name: Code-Wahrheit pruefen
+        run: npm run check
+
+      - name: Rechtliches Tor pruefen
+        id: tor
+        run: node tools/legal-gate.mjs
+
+      - name: Oeffentliche Dateien zusammenstellen
+        if: steps.tor.outputs.zulaessig == 'true'
+        run: |
+          set -euo pipefail
+          rm -rf _site
+          mkdir -p _site
+          cp *.html _site/
+          cp -r assets _site/
+          cp -r data _site/
+          touch _site/.nojekyll
+          echo "Dateien insgesamt: $(find _site -type f | wc -l)"
+
+      - name: Zwischenstand hochladen
+        if: steps.tor.outputs.zulaessig == 'true'
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa # actions/upload-pages-artifact v3
+        with:
+          path: _site
+
+  veroeffentlichen:
+    name: Veroeffentlichen
+    needs: pruefen
+    if: needs.pruefen.outputs.rechtliches_tor == 'true'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.veroeffentlichung.outputs.page_url }}
+    permissions:
+      pages: write
+      id-token: write
+    steps:
+      - name: Pages einrichten
+        uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # actions/configure-pages v5
+
+      - name: Veroeffentlichen
+        id: veroeffentlichung
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # actions/deploy-pages v4

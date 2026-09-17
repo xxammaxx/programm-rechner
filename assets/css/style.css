@@ -1,0 +1,758 @@
+/* Programm-Rechner — mobile first.
+   Entwurfsregeln: eine Spalte, keine horizontalen Scrollbereiche, grosse Ziele,
+   Kontrast mindestens 4,5:1 fuer Text, Fokus immer sichtbar, Groessen in rem,
+   damit 200 Prozent Textzoom ohne Layoutbruch funktioniert. */
+
+:root {
+  --farbe-text: #14171a;
+  --farbe-text-schwach: #4a5259;
+  --farbe-hintergrund: #ffffff;
+  --farbe-flaeche: #f4f6f8;
+  --farbe-rand: #c8d0d8;
+  --farbe-rand-stark: #8b959e;
+  --farbe-akzent: #12456b;
+  --farbe-akzent-text: #ffffff;
+  --farbe-warnung-flaeche: #fdf4e3;
+  --farbe-warnung-rand: #8a6100;
+  --farbe-warnung-text: #5c4100;
+  --farbe-positiv: #14532d;
+  --farbe-neutral: #3f4650;
+  --abstand: 1rem;
+  --radius: 0.5rem;
+  --zielhoehe: 3rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--farbe-hintergrund);
+  color: var(--farbe-text);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+  hyphens: auto;
+}
+
+.umschlag {
+  width: 100%;
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 0.875rem 0.875rem 4rem;
+}
+
+/* ---------- Kopf und Fuss ---------- */
+
+.kopf {
+  padding: 0.25rem 0 0.5rem;
+  border-bottom: 1px solid var(--farbe-rand);
+  margin-bottom: 0.625rem;
+}
+
+.kopf__marke {
+  margin: 0 0 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--farbe-akzent);
+}
+
+.kopf__titel {
+  margin: 0;
+  font-size: 1.1875rem;
+  line-height: 1.18;
+}
+
+.kopf__unterzeile {
+  margin: 0.5rem 0 0;
+  color: var(--farbe-text-schwach);
+  font-size: 0.9375rem;
+}
+
+.fuss {
+  margin-top: 2.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--farbe-rand);
+  font-size: 0.875rem;
+  color: var(--farbe-text-schwach);
+}
+
+.fuss ul {
+  list-style: none;
+  margin: 0 0 0.75rem;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+}
+
+.fuss a {
+  color: var(--farbe-akzent);
+}
+
+/* ---------- Hinweise ---------- */
+
+.hinweis {
+  border: 1px solid var(--farbe-rand);
+  border-left-width: 0.375rem;
+  border-radius: var(--radius);
+  background: var(--farbe-flaeche);
+  padding: 0.875rem 1rem;
+  margin: 0 0 1.25rem;
+  font-size: 0.9375rem;
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.hinweis--pflichthinweis {
+  border-color: var(--farbe-akzent);
+  border-left-color: var(--farbe-akzent);
+  background: #eef4f9;
+}
+
+.hinweis--warnung {
+  border-color: var(--farbe-warnung-rand);
+  border-left-color: var(--farbe-warnung-rand);
+  background: var(--farbe-warnung-flaeche);
+  color: var(--farbe-warnung-text);
+}
+
+.hinweis--datenschutz {
+  border-left-color: var(--farbe-positiv);
+  background: #eef6f0;
+}
+
+/* Kompakte Fassung fuer den ersten Bildschirm: der Pflichttext bleibt vollstaendig
+   und prominent, belegt aber deutlich weniger Hoehe. */
+.hinweis--kompakt {
+  padding: 0.5rem 0.625rem;
+  margin-bottom: 0.625rem;
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+/* Datenschutz-Zusicherung als einzelne Zeile statt als Kasten. */
+.datenschutz-zeile {
+  margin: 0 0 0.75rem;
+  font-size: 0.8125rem;
+  line-height: 1.45;
+  color: var(--farbe-positiv);
+}
+
+.datenschutz-zeile a {
+  color: var(--farbe-akzent);
+}
+
+.hinweis__titel {
+  margin: 0 0 0.375rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+}
+
+.hinweis p {
+  margin: 0 0 0.5rem;
+}
+
+.hinweis p:last-child {
+  margin-bottom: 0;
+}
+
+/* ---------- Fortschritt ---------- */
+
+.fortschritt {
+  margin: 0 0 0.625rem;
+}
+
+.fortschritt__text {
+  font-size: 0.8125rem;
+  color: var(--farbe-text-schwach);
+  margin: 0 0 0.25rem;
+}
+
+.fortschritt__balken {
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+  border: 1px solid var(--farbe-rand);
+  border-radius: 999px;
+  background: var(--farbe-flaeche);
+  overflow: hidden;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.fortschritt__balken::-webkit-progress-bar {
+  background: var(--farbe-flaeche);
+  border-radius: 999px;
+}
+
+.fortschritt__balken::-webkit-progress-value {
+  background: var(--farbe-akzent);
+  border-radius: 999px;
+}
+
+.fortschritt__balken::-moz-progress-bar {
+  background: var(--farbe-akzent);
+  border-radius: 999px;
+}
+
+/* ---------- Schritte ---------- */
+
+.schritt[hidden] {
+  display: none;
+}
+
+.schritt__frage {
+  margin: 0 0 0.25rem;
+  font-size: 1.3125rem;
+  line-height: 1.25;
+}
+
+.schritt__hilfe {
+  margin: 0 0 0.75rem;
+  color: var(--farbe-text-schwach);
+  font-size: 0.875rem;
+}
+
+.feld {
+  margin: 0 0 1rem;
+}
+
+.feld__label {
+  display: block;
+  font-weight: 700;
+  margin: 0 0 0.375rem;
+}
+
+.feld__hinweis {
+  margin: 0 0 0.375rem;
+  font-size: 0.875rem;
+  color: var(--farbe-text-schwach);
+}
+
+/* ---------- Eingaben ---------- */
+
+.eingabe-zeile {
+  display: flex;
+  align-items: stretch;
+  gap: 0.5rem;
+}
+
+.eingabe {
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0.625rem 0.875rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--farbe-text);
+  background: var(--farbe-hintergrund);
+  border: 2px solid var(--farbe-rand-stark);
+  border-radius: var(--radius);
+}
+
+.eingabe:focus-visible {
+  outline: 3px solid var(--farbe-akzent);
+  outline-offset: 2px;
+}
+
+.eingabe-einheit {
+  display: flex;
+  align-items: center;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: var(--farbe-text-schwach);
+}
+
+/* ---------- Auswahl ---------- */
+
+.auswahl {
+  display: grid;
+  gap: 0.375rem;
+}
+
+.auswahl--zwei {
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+}
+
+.option {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-wrap: anywhere;
+  min-width: 0;
+  min-height: 3rem;
+  padding: 0.625rem 0.75rem;
+  text-align: center;
+  font-weight: 700;
+  background: var(--farbe-hintergrund);
+  border: 2px solid var(--farbe-rand-stark);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.option input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.option:has(input:checked) {
+  background: var(--farbe-akzent);
+  border-color: var(--farbe-akzent);
+  color: var(--farbe-akzent-text);
+}
+
+.option:has(input:focus-visible) {
+  outline: 3px solid var(--farbe-akzent);
+  outline-offset: 2px;
+}
+
+.option__zusatz {
+  display: block;
+  font-weight: 400;
+  font-size: 0.8125rem;
+}
+
+.option > span {
+  min-width: 0;
+}
+
+/* ---------- Schaltflaechen ---------- */
+
+.schaltflaechen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.schaltflaeche {
+  flex: 1 1 10rem;
+  min-height: 3rem;
+  padding: 0.75rem 1rem;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  font-family: inherit;
+  color: var(--farbe-akzent-text);
+  background: var(--farbe-akzent);
+  border: 2px solid var(--farbe-akzent);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.schaltflaeche:focus-visible {
+  outline: 3px solid var(--farbe-text);
+  outline-offset: 2px;
+}
+
+.schaltflaeche--zweit {
+  color: var(--farbe-akzent);
+  background: var(--farbe-hintergrund);
+}
+
+.schaltflaeche--still {
+  color: var(--farbe-text);
+  background: var(--farbe-hintergrund);
+  border-color: var(--farbe-rand-stark);
+  flex: 1 1 100%;
+  font-weight: 400;
+}
+
+.schaltflaeche[disabled] {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- Ergebnis ---------- */
+
+.ergebnis__label {
+  margin: 0 0 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--farbe-akzent);
+}
+
+.ergebnis__betrag {
+  margin: 0.25rem 0 0;
+  font-size: 2.5rem;
+  line-height: 1.1;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.ergebnis__betrag--negativ {
+  color: #8a1c1c;
+}
+
+.ergebnis__monat {
+  margin: 0.375rem 0 0;
+  font-size: 1.0625rem;
+  color: var(--farbe-text-schwach);
+}
+
+.ergebnis__vorspann {
+  margin: 0 0 0.75rem;
+  color: var(--farbe-text-schwach);
+  font-size: 0.9375rem;
+}
+
+.abdeckung {
+  border: 1px solid var(--farbe-rand);
+  border-radius: var(--radius);
+  background: var(--farbe-flaeche);
+  padding: 0.875rem 1rem;
+  margin: 1.25rem 0;
+}
+
+.abdeckung__titel {
+  margin: 0 0 0.5rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--farbe-text-schwach);
+}
+
+.abdeckung ul {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.abdeckung li {
+  margin-bottom: 0.25rem;
+}
+
+/* ---------- Karten ---------- */
+
+.karten {
+  display: grid;
+  gap: 0.875rem;
+  margin: 0 0 1.25rem;
+  padding: 0;
+  list-style: none;
+}
+
+.karte {
+  border: 1px solid var(--farbe-rand);
+  border-radius: var(--radius);
+  padding: 0.875rem 1rem;
+  background: var(--farbe-hintergrund);
+  overflow-wrap: anywhere;
+  min-width: 0;
+}
+
+.karte__name {
+  margin: 0 0 0.375rem;
+  font-size: 1.0625rem;
+  line-height: 1.3;
+}
+
+.karte__wirkung {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.karte__text {
+  margin: 0 0 0.625rem;
+  font-size: 0.9375rem;
+  color: var(--farbe-text-schwach);
+}
+
+.marke {
+  display: inline-block;
+  padding: 0.1875rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid currentColor;
+}
+
+.marke--direkt {
+  color: var(--farbe-positiv);
+}
+
+.marke--modell {
+  color: var(--farbe-warnung-text);
+}
+
+.marke--nicht {
+  color: var(--farbe-neutral);
+}
+
+.karte__aktionen {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.karte__aktion {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.9375rem;
+  color: var(--farbe-akzent);
+  background: none;
+  border: 1px solid var(--farbe-rand-stark);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.karte__aktion:focus-visible {
+  outline: 3px solid var(--farbe-akzent);
+  outline-offset: 2px;
+}
+
+.rechenweg {
+  margin: 0.75rem 0 0;
+  padding: 0.75rem 0 0;
+  border-top: 1px dashed var(--farbe-rand);
+  font-size: 0.875rem;
+}
+
+.rechenweg[hidden] {
+  display: none;
+}
+
+.rechenweg dl {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.25rem 0.75rem;
+}
+
+.rechenweg dt {
+  font-weight: 700;
+}
+
+.rechenweg dd {
+  margin: 0 0 0.375rem;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Textseiten ---------- */
+
+.textseite h2 {
+  font-size: 1.3125rem;
+  margin: 2rem 0 0.5rem;
+  line-height: 1.3;
+}
+
+.textseite h3 {
+  font-size: 1.0625rem;
+  margin: 1.5rem 0 0.375rem;
+}
+
+.textseite p,
+.textseite li {
+  max-width: 42rem;
+}
+
+.textseite ul {
+  padding-left: 1.25rem;
+}
+
+.textseite table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin: 0 0 1rem;
+}
+
+.textseite caption {
+  text-align: left;
+  font-weight: 700;
+  padding-bottom: 0.375rem;
+}
+
+.textseite th,
+.textseite td {
+  text-align: left;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--farbe-rand);
+  vertical-align: top;
+  overflow-wrap: anywhere;
+}
+
+.textseite a {
+  color: var(--farbe-akzent);
+  overflow-wrap: anywhere;
+}
+
+.textseite code {
+  font-size: 0.875em;
+  background: var(--farbe-flaeche);
+  padding: 0.0625rem 0.25rem;
+  border-radius: 0.1875rem;
+}
+
+.quellenliste {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.quellenliste li {
+  border-bottom: 1px solid var(--farbe-rand);
+  padding: 0.75rem 0;
+}
+
+.quellenliste__titel {
+  font-weight: 700;
+}
+
+.quellenliste__meta {
+  display: block;
+  font-size: 0.8125rem;
+  color: var(--farbe-text-schwach);
+}
+
+.zurueck-oben {
+  display: inline-block;
+  margin-top: 2rem;
+  min-height: 2.75rem;
+  padding: 0.625rem 0;
+  font-weight: 700;
+}
+
+/* Nur fuer Screenreader. */
+.nur-vorlesen {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (min-width: 30rem) {
+  body {
+    font-size: 1.125rem;
+  }
+
+  .umschlag {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .rechenweg dl {
+    grid-template-columns: auto 1fr;
+  }
+
+  .rechenweg dt {
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* ---------- Zusatzklaessen ---------- */
+
+/* Fieldset ohne Rahmen, damit die Gruppe wie ein normales Feld wirkt. */
+.feld--gruppe {
+  border: 0;
+  padding: 0;
+  margin: 0 0 1.25rem;
+  min-inline-size: auto;
+}
+
+/* Schaltflaeche, die ein Link ist. */
+.schaltflaeche--link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+}
+
+.karte__marke-zeile {
+  margin: 0 0 0.5rem;
+}
+
+.karte__wirkung--negativ {
+  color: #8a1c1c;
+}
+
+.karte__klein {
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+}
+
+.zaehler {
+  font-size: 0.875rem;
+  color: var(--farbe-text-schwach);
+  margin: 0.75rem 0 0;
+}
+
+/* Auf sehr schmalen Geraeten den Kopf noch etwas knapper halten, damit Frage,
+   Eingabefeld und Weiter-Schaltflaeche ohne Scrollen erreichbar bleiben. */
+@media (max-width: 23.5rem) {
+  .kopf__titel {
+    font-size: 1.125rem;
+  }
+
+  .hinweis--kompakt {
+    font-size: 0.84375rem;
+  }
+}
+
+/* ---------- Eingeklappter Programmtext ---------- */
+
+.zitat {
+  margin: 0 0 0.625rem;
+}
+
+.zitat__schalter {
+  display: inline-flex;
+  align-items: center;
+  min-height: 2.75rem;
+  font-size: 0.9375rem;
+  color: var(--farbe-akzent);
+  cursor: pointer;
+  overflow-wrap: anywhere;
+}
+
+.zitat__schalter:focus-visible {
+  outline: 3px solid var(--farbe-akzent);
+  outline-offset: 2px;
+}
+
+.zitat__text {
+  margin-top: 0.5rem;
+  padding-left: 0.75rem;
+  border-left: 2px solid var(--farbe-rand);
+  font-style: italic;
+}

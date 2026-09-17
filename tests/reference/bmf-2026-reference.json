@@ -1,0 +1,120 @@
+{
+  "schema_version": "1.0.0",
+  "zweck": "Referenzwerte aus amtlichen Quellen. Diese Datei dokumentiert, wogegen der Rechner geprüft wird, und unterscheidet zwischen bestätigten und nicht abschliessend geklärten Werten.",
+  "assessment_year": 2026,
+
+  "pap_2026_parameter": {
+    "quelle": "BMF-Programmablaufplan 2026, BMF-Schreiben vom 12.11.2025, GZ IV C 5 - S 2361/00025/016/028, Anlage 1 und Anlage 2, Stand 12.11.2025 (endgültig)",
+    "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-11-12-PAP-2026.html",
+    "status": "bestaetigt",
+    "werte": {
+      "GFB": 12348,
+      "SOLZFREI": 20350,
+      "BBGRVALV": 101400,
+      "BBGKVPV": 69750,
+      "RVSATZAN": 0.093,
+      "KVSATZAN_ermaessigt": 0.07,
+      "durchschnittlicher_zusatzbeitragssatz_prozent": 2.9,
+      "PVSATZAN": 0.018,
+      "AVSATZAN": 0.013,
+      "W1STKL5": 14071,
+      "W2STKL5": 34939,
+      "W3STKL5": 222260,
+      "EFA": 4260,
+      "KFB_je_kind_steuerklasse_1": 4878,
+      "KFB_je_kind_steuerklasse_3": 9756,
+      "SAP": 36,
+      "ANP": 1230
+    },
+    "pruefung": "tests/unit/params.consistency.test.mjs vergleicht diese Werte mit der Engine."
+  },
+
+  "amtliches_rechenbeispiel": {
+    "quelle": "BMF-Programmablaufplan 2026, Anlage 2, Beispiel 1",
+    "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-11-12-PAP-2026-anlage-2.pdf",
+    "status": "bestaetigt",
+    "sachverhalt": "Arbeitnehmer Steuerklasse III, keine Kinder, Bruttojahresarbeitslohn 75.000 Euro, gesetzlich renten- und arbeitslosenversichert, privat kranken- und pflegeversichert.",
+    "amtlicher_wert": {
+      "vorsorgepauschale_kv_pv_anteil_euro": 7149,
+      "lohnsteuer_allgemeine_tabelle_euro": 8330
+    },
+    "nachrechnung_kv_pv": {
+      "formel": "69.750 Euro x (7,0 % + 1,45 %) + 69.750 Euro x 1,8 %",
+      "ergebnis_euro": 7149.375,
+      "bewertung": "Die Engine reproduziert den amtlichen Wert exakt auf volle Euro. Damit sind Beitragsbemessungsgrenze, ermäßigter Beitragssatz, hälftiger Zusatzbeitrag und Pflegeversicherungssatz gegen eine amtliche Veröffentlichung bestätigt.",
+      "test": "tests/unit/est.test.mjs"
+    },
+    "nicht_reproduziert": {
+      "wert": "lohnsteuer_allgemeine_tabelle_euro = 8330",
+      "eigene_rechnung_euro": 8324,
+      "differenz_euro": 6,
+      "erklaerung": "Der Rechner bildet das Veranlagungsverfahren ab, nicht den Lohnsteuerabzug. Die Lohnsteuer-Vorsorgepauschale nach § 39b Abs. 2 Satz 5 Nr. 3 EStG folgt einer anderen Systematik als der Sonderausgabenabzug nach § 10 EStG, unter anderem beim Zusammenspiel der Teilbeträge für Renten-, Kranken-, Pflege- und Arbeitslosenversicherung und beim Höchstbetrag. Eine abschliessende Rekonstruktion des amtlichen Tabellenwerts ist aus dem veröffentlichten Programmablaufplan heraus nicht gelungen.",
+      "konsequenz": "Der Rechner beansprucht ausdrücklich NICHT, die amtlichen Lohnsteuertabellen zu reproduzieren. Als Referenz dienen der Tarif und der Solidaritätszuschlag, die gegen die Module UPTAB26 und MSOLZ des Programmablaufplans auf einem dichten Wertegitter geprüft werden.",
+      "status": "offen dokumentiert"
+    }
+  },
+
+  "tarif_referenzwerte": {
+    "quelle": "§ 32a Abs. 1 EStG, Veranlagungszeitraum 2026 und 2025, unabhängig aus dem Gesetzeswortlaut berechnet",
+    "status": "bestaetigt",
+    "werte_2026": [
+      { "zve": 12348, "est": 0 },
+      { "zve": 17799, "est": 1034 },
+      { "zve": 69878, "est": 18213 },
+      { "zve": 277825, "est": 105550 },
+      { "zve": 277826, "est": 105551 },
+      { "zve": 100000, "est": 30864 },
+      { "zve": 300000, "est": 115529 }
+    ],
+    "werte_2025": [
+      { "zve": 12096, "est": 0 },
+      { "zve": 17443, "est": 1015 },
+      { "zve": 68480, "est": 17849 },
+      { "zve": 277825, "est": 105774 },
+      { "zve": 100000, "est": 31088 },
+      { "zve": 300000, "est": 115753 }
+    ]
+  },
+
+  "solidaritaetszuschlag_referenzwerte": {
+    "quelle": "§§ 3 und 4 SolzG 1995 sowie Modul MSOLZ des BMF-Programmablaufplans 2026",
+    "status": "bestaetigt",
+    "freigrenze_einzel": 20350,
+    "freigrenze_zusammenveranlagung": 40700,
+    "satz": 0.055,
+    "milderungssatz": 0.119,
+    "milderungszone_ende_faktor": 1.859375,
+    "milderungszone_ende_einzel_euro": 37838.28125,
+    "ableitung": "5,5 % = 11,9 % x (Bemessungsgrundlage - Freigrenze) / Bemessungsgrundlage  =>  Bemessungsgrundlage = Freigrenze x 1,859375"
+  },
+
+  "zew_referenzwerte": {
+    "quelle": "ZEW-Gutachten Januar 2025, Mikrosimulation ZEW-EviSTA, Rechtsstand Juli 2024",
+    "status": "nur_referenz_keine_ableitung",
+    "hinweis": "Diese Werte werden NICHT nachgerechnet und NICHT als Zielwert verwendet. Der Rechner rechnet auf Rechtsstand 2026 und ohne Transfermodell. Die Werte sind hier nur dokumentiert, damit die Unterschiede nachvollziehbar bleiben.",
+    "afd_fiskalwirkung_mrd_euro": 97,
+    "beispielhaushalte_afd_euro_jahr": {
+      "alleinverdiener_paar_zwei_kinder": [
+        { "brutto": 40000, "wirkung": -440 },
+        { "brutto": 60000, "wirkung": 5305 },
+        { "brutto": 80000, "wirkung": 8626 },
+        { "brutto": 120000, "wirkung": 12099 },
+        { "brutto": 180000, "wirkung": 19185 }
+      ],
+      "single": [
+        { "brutto": 20000, "wirkung": 12 },
+        { "brutto": 40000, "wirkung": 833 },
+        { "brutto": 60000, "wirkung": 878 },
+        { "brutto": 80000, "wirkung": 928 },
+        { "brutto": 120000, "wirkung": 2710 }
+      ]
+    },
+    "bekannte_unterschiede_zum_rechner": [
+      "Rechtsstand: ZEW rechnet auf Juli 2024, der Rechner auf 2026.",
+      "Sparer-Pauschbetrag: ZEW setzt 2.400 Euro an, das verabschiedete Programm nennt 6.672 Euro.",
+      "Werbungskostenpauschale 2.000 Euro und Kinderfreibetrag 12.000 Euro stammen aus BT-Drucksache 20/13356, nicht aus dem Wahlprogramm, und werden deshalb nicht gerechnet.",
+      "Transferwirkungen: ZEW modelliert Wohngeld, Grundsicherung, Kinderzuschlag und Sozialversicherung. Der Rechner weist nur die Steuerseite aus. Das erklärt insbesondere das negative Ergebnis von 440 Euro beim Beispielhaushalt mit 40.000 Euro, das ZEW selbst auf die Anrechnung beim Wohngeld zurückführt.",
+      "Das ZEW-Ergebnis für den 40.000-Euro-Haushalt lässt sich mit einem reinen Steuermodell nicht reproduzieren. Genau deshalb zeigt der Rechner einen Hinweis auf Transferleistungen."
+    ]
+  }
+}

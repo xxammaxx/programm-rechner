@@ -1,0 +1,22 @@
+{
+  "name": "programm-rechner",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Programm-Rechner: Welche direkt berechenbaren Auswirkungen hätten ausgewählte Vorschläge des AfD-Bundestagswahlprogramms 2025 auf meinen Haushalt?",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test \"tests/unit/*.test.mjs\" \"tests/reference/*.test.mjs\"",
+    "test:unit": "node --test \"tests/unit/*.test.mjs\"",
+    "test:e2e": "playwright test",
+    "serve": "node tools/serve.mjs",
+    "check": "node tools/check.mjs",
+    "test:reference": "node --test \"tests/reference/*.test.mjs\""
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.63.0"
+  }
+}

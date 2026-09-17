@@ -1,0 +1,191 @@
+{
+  "schema_version": "1.0.0",
+  "assessment_year": 2026,
+  "currency": "EUR",
+  "baseline_label": "Rechtsstand 2026 (Veranlagungszeitraum 2026)",
+  "baseline_rationale": "Maßgeblich ist das geltende Recht des Veranlagungszeitraums 2026. Das ist der aktuellste Rechtsstand und zugleich das früheste Jahr, in dem eine Umsetzung des Wahlprogramms realistisch wirkt. Die offizielle BMF-Berechnungsvorschrift für 2026 (Programmablaufplan, Stand 12.11.2025) ist die normative Referenz.",
+  "sources": {
+    "estg_32a": {
+      "citation": "§ 32a Abs. 1 EStG, Veranlagungszeitraum 2026",
+      "url": "https://www.gesetze-im-internet.de/estg/__32a.html",
+      "retrieved": "2026-09-17"
+    },
+    "estg_32": {
+      "citation": "§ 32 Abs. 6 EStG",
+      "url": "https://www.gesetze-im-internet.de/estg/__32.html",
+      "retrieved": "2026-09-17"
+    },
+    "estg_66": {
+      "citation": "§ 66 Abs. 1 EStG",
+      "url": "https://www.gesetze-im-internet.de/estg/__66.html",
+      "retrieved": "2026-09-17"
+    },
+    "estg_9a": {
+      "citation": "§ 9a Satz 1 Nr. 1 Buchstabe a EStG",
+      "url": "https://www.gesetze-im-internet.de/estg/__9a.html",
+      "retrieved": "2026-09-17"
+    },
+    "estg_10c": {
+      "citation": "§ 10c EStG",
+      "url": "https://www.gesetze-im-internet.de/estg/__10c.html",
+      "retrieved": "2026-09-17"
+    },
+    "estg_10": {
+      "citation": "§ 10 Abs. 1 Nr. 2 lit. a, Nr. 3 und Abs. 3 EStG",
+      "url": "https://www.gesetze-im-internet.de/estg/__10.html",
+      "retrieved": "2026-09-17"
+    },
+    "estg_20": {
+      "citation": "§ 20 Abs. 9 EStG",
+      "url": "https://www.gesetze-im-internet.de/estg/__20.html",
+      "retrieved": "2026-09-17"
+    },
+    "estg_24b": {
+      "citation": "§ 24b EStG (Entlastungsbetrag für Alleinerziehende), Betrag bestätigt über BMF-Programmablaufplan 2026",
+      "url": "https://www.gesetze-im-internet.de/estg/__24b.html",
+      "retrieved": "2026-09-17"
+    },
+    "solzg_3": {
+      "citation": "§ 3 Abs. 2 und Abs. 3 SolzG 1995",
+      "url": "https://www.gesetze-im-internet.de/solzg_1995/__3.html",
+      "retrieved": "2026-09-17"
+    },
+    "solzg_4": {
+      "citation": "§ 4 SolzG 1995",
+      "url": "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+      "retrieved": "2026-09-17"
+    },
+    "stefeg": {
+      "citation": "Steuerfortentwicklungsgesetz (SteFeG) vom 23.12.2024, BGBl. 2024 I Nr. 449",
+      "url": "https://www.recht.bund.de/bgbl/1/2024/449/regelungstext.pdf",
+      "retrieved": "2026-09-17"
+    },
+    "bmf_pap_2026": {
+      "citation": "BMF-Programmablaufplan 2026, BMF-Schreiben vom 12.11.2025, GZ IV C 5 - S 2361/00025/016/028, Stand 12.11.2025 (endgültig), Anlage 1 und Anlage 2",
+      "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-11-12-PAP-2026.html",
+      "retrieved": "2026-09-17",
+      "role": "Normative, über § 39b Abs. 6 EStG gesetzlich vorgeschriebene Berechnungsvorschrift. Wird als unabhängige Referenzimplementierung für Tarif und Solidaritätszuschlag verwendet."
+    }
+  },
+  "tariff_32a": {
+    "grundfreibetrag": 12348,
+    "zones": [
+      { "zone": 1, "upper": 12348, "formula": "0" },
+      { "zone": 2, "lower": 12349, "upper": 17799, "formula": "(914.51 * y + 1400) * y", "y_base": 12348, "y_divisor": 10000 },
+      { "zone": 3, "lower": 17800, "upper": 69878, "formula": "(173.10 * z + 2397) * z + 1034.87", "z_base": 17799, "z_divisor": 10000 },
+      { "zone": 4, "lower": 69879, "upper": 277825, "formula": "0.42 * x - 11135.63" },
+      { "zone": 5, "lower": 277826, "upper": null, "formula": "0.45 * x - 19470.38" }
+    ],
+    "rounding": {
+      "zve": "Das zu versteuernde Einkommen wird vor der Tarifanwendung auf volle Euro abgerundet (§ 32a Abs. 1 Satz 1 EStG).",
+      "tax": "Der sich ergebende Steuerbetrag wird auf den nächsten vollen Euro-Betrag abgerundet (§ 32a Abs. 1 Satz 6 EStG).",
+      "splitting": "Bei Zusammenveranlagung das Zweifache des Betrags für die Hälfte des zu versteuernden Einkommens (§ 32a Abs. 5 EStG). Die Hälfte wird dabei ebenfalls auf volle Euro abgerundet; das entspricht der ganzzahligen Division ZVE / KZTAB im BMF-Programmablaufplan 2026, Modul UPMLST."
+    },
+    "source": "estg_32a",
+    "cross_checked_against": "bmf_pap_2026"
+  },
+  "kinderfreibetrag_32_abs_6": {
+    "saechliches_existenzminimum_je_elternteil_je_kind": 3414,
+    "bea_freibetrag_je_elternteil_je_kind": 1464,
+    "summe_je_elternteil_je_kind": 4878,
+    "bei_zusammenveranlagung_je_kind": 9756,
+    "source": "estg_32",
+    "cross_checked_against": "bmf_pap_2026"
+  },
+  "kindergeld_66": {
+    "monatlich_je_kind": 259,
+    "jaehrlich_je_kind": 3108,
+    "source": "estg_66"
+  },
+  "pauschbetraege": {
+    "arbeitnehmer_pauschbetrag_9a": 1230,
+    "sonderausgaben_pauschbetrag_10c": 36,
+    "sonderausgaben_pauschbetrag_zusammenveranlagung_10c": 72,
+    "entlastungsbetrag_alleinerziehende_24b": 4260,
+    "sparer_pauschbetrag_20_abs_9_einzel": 1000,
+    "sparer_pauschbetrag_20_abs_9_zusammen": 2000,
+    "sources": ["estg_9a", "estg_10c", "estg_20", "estg_24b"]
+  },
+  "solidaritaetszuschlag": {
+    "satz_prozent": 5.5,
+    "milderungszone_satz_prozent": 11.9,
+    "milderungszone_ende_faktor": 1.859375,
+    "milderungszone_ende_hinweis": "Abgeleitet aus § 4 Satz 1 und 2 SolzG 1995: 5,5 % = 11,9 % x (Bemessungsgrundlage - Freigrenze) / Bemessungsgrundlage, also Bemessungsgrundlage = Freigrenze x 1,859375. Oberhalb dieses Werts greift der volle Satz von 5,5 %.",
+    "freigrenze_einzel_2026": 20350,
+    "freigrenze_zusammenveranlagung_2026": 40700,
+    "rundung": "Bruchteile eines Cents bleiben außer Ansatz (§ 4 Satz 3 SolzG 1995).",
+    "bemessungsgrundlage_regel": "Bemessungsgrundlage ist die Einkommensteuer, die unter Berücksichtigung der Freibeträge nach § 32 Abs. 6 EStG in allen Fällen des § 32 EStG festzusetzen wäre (§ 3 Abs. 2 SolzG 1995). Der Kinderfreibetrag wird für den Solidaritätszuschlag also immer angesetzt, unabhängig von der Günstigerprüfung beim Kindergeld.",
+    "kapitalertragsteuer_regel": "Auf die Einkommensteuer nach § 32d Abs. 3 und 4 EStG ist der Solidaritätszuschlag ungeachtet der Freigrenze mit 5,5 % zu erheben (§ 3 Abs. 3 Satz 2 und § 4 Satz 3 SolzG 1995).",
+    "sources": ["solzg_3", "solzg_4"],
+    "cross_checked_against": "bmf_pap_2026"
+  },
+  "abgeltungsteuer_32d": {
+    "satz_prozent": 25,
+    "bemessungsgrundlage": "Kapitalertrag abzüglich Sparer-Pauschbetrag",
+    "sources": ["estg_20"],
+    "modellierungshinweis": "Die Abgeltungsteuer wird als abgeltende Quellensteuer auf Kapitaleinkünfte modelliert und getrennt von der tariflichen Einkommensteuer auf das Arbeitseinkommen gerechnet. Eine Veranlagung der Kapitalerträge nach § 32d Abs. 3 und 4 EStG sowie die daraus folgenden Feinheiten des § 3 Abs. 2 und 3 SolzG 1995 werden nicht abgebildet. Nicht modelliert: Günstigerprüfung nach § 32d Abs. 6 EStG und Kirchensteuer."
+  },
+  "vorsorgeaufwendungen_modell": {
+    "modell": "Arbeitnehmerhaushalt mit gesetzlicher Kranken-, Pflege- und Rentenversicherung. Angesetzt werden die Arbeitnehmeranteile.",
+    "rentenversicherung": {
+      "arbeitnehmeranteil_prozent": 9.3,
+      "abzug_prozent_von_vorsorgeaufwendungen": 100,
+      "abzug_prozent_hinweis": "§ 10 Abs. 3 Satz 4 und 6 EStG: ab dem Kalenderjahr 2023 beträgt der Prozentsatz 100 Prozent. Nach § 10 Abs. 3 Satz 5 EStG ist der steuerfreie Arbeitgeberanteil abzuziehen; angesetzt wird deshalb nur der Arbeitnehmeranteil.",
+      "beitragsbemessungsgrenze": 101400,
+      "source": "estg_10",
+      "cross_checked_against": "bmf_pap_2026"
+    },
+    "krankenversicherung": {
+      "ermaessigter_beitragssatz_prozent": 14.0,
+      "arbeitnehmeranteil_halber_satz_prozent": 7.0,
+      "durchschnittlicher_zusatzbeitragssatz_prozent": 2.9,
+      "arbeitnehmeranteil_zusatzbeitrag_prozent": 1.45,
+      "kuerzung_wegen_krankengeldanspruch_prozent": 4.0,
+      "kuerzung_hinweis": "§ 10 Abs. 1 Nr. 3 Satz 4 EStG: Ist ein Anspruch auf Krankengeld möglich, ist der Beitrag um 4 Prozent zu vermindern.",
+      "beitragsbemessungsgrenze": 69750,
+      "hinweis_zur_halbierung": "Der ermäßigte Beitragssatz nach § 243 SGB V beträgt 14,0 Prozent und wird paritätisch getragen. Abgesetzt wird nach § 10 Abs. 1 Nr. 3 EStG der Arbeitnehmeranteil. In der Engine ist das der Faktor 0,07 für den ermäßigten Satz zuzüglich 0,0145 für den halben Zusatzbeitrag. Die Aufteilung in Arbeitnehmer- und Arbeitgeberanteil vollzieht der BMF-Programmablaufplan 2026 im Programmablauf.",
+      "source": "estg_10",
+      "cross_checked_against": "bmf_pap_2026",
+      "cross_check_note": "Der Wert 2,9 Prozent ist der durchschnittliche Zusatzbeitragssatz 2026 laut BMF-Programmablaufplan 2026, Anlage 2. Er ist über § 242a SGB V der Ansatz der Lohnsteuertabellen. Die kassenindividuellen Sätze können abweichen; der Effekt ist im Szenarienvergleich neutral, weil er in beiden Szenarien identisch wirkt."
+    },
+    "pflegeversicherung": {
+      "bundeseinheitlicher_beitragssatz_prozent": 3.6,
+      "arbeitnehmeranteil_prozent": 1.8,
+      "kinderlosenzuschlag_prozent": 0.6,
+      "abschlag_je_kind_2_bis_5_prozent": 0.25,
+      "beitragsbemessungsgrenze": 69750,
+      "source": "estg_10",
+      "cross_checked_against": "bmf_pap_2026"
+    },
+    "sonstige_vorsorgeaufwendungen_hoechstbetrag": {
+      "betrag": 2800,
+      "betrag_mit_beihilfe": 1900,
+      "hinweis": "§ 10 Abs. 4 EStG. Übersteigen die Beiträge für die Basiskranken- und Pflegeversicherung nach Absatz 1 Nr. 3 den Höchstbetrag, sind sie in voller Höhe abzuziehen und der Abzug von Aufwendungen nach Absatz 1 Nr. 3a scheidet aus (§ 10 Abs. 4 Satz 4 EStG). Für gesetzlich versicherte Arbeitnehmer ist der Höchstbetrag deshalb regelmäßig nicht bindend.",
+      "source": "estg_10"
+    },
+    "nicht_modelliert": [
+      "Kassenindividueller Zusatzbeitragssatz abweichend vom Durchschnittssatz von 2,9 Prozent",
+      "Beiträge zu sonstigen Versicherungen nach § 10 Abs. 1 Nr. 3a EStG",
+      "Private Kranken- und Pflegeversicherung",
+      "Spenden und Kirchensteuer als Sonderausgaben",
+      "Werbungskosten oberhalb des Arbeitnehmer-Pauschbetrags",
+      "Außergewöhnliche Belastungen",
+      "Höchstbeitrag zur knappschaftlichen Rentenversicherung nach § 10 Abs. 3 Satz 1 EStG (für Arbeitnehmer nicht bindend, da der Arbeitnehmeranteil unterhalb liegt)"
+    ],
+    "modellneutralitaet": "Alle Vorsorgeaufwendungen sind im Vergleich zwischen geltendem Recht und Szenario identisch. Die ausgewiesene Differenz wird dadurch nicht durch die Vereinfachungen bei den Vorsorgeaufwendungen verzerrt."
+  },
+  "sozialversicherung_weitere": {
+    "arbeitslosenversicherung_beitragssatz_prozent": 2.6,
+    "rentenversicherung_beitragssatz_prozent": 18.6,
+    "hinweis": "Nur zur Information. Arbeitslosenversicherungsbeiträge wirken sich in der Einkommensteuer nur über § 39b (Lohnsteuer) aus, nicht im Veranlagungsverfahren nach § 10 EStG, und werden daher nicht abgezogen.",
+    "cross_checked_against": "bmf_pap_2026"
+  },
+  "transfers_nicht_modelliert": {
+    "items": ["Wohngeld", "Bürgergeld / Grundsicherung", "Kinderzuschlag", "Unterhaltsvorschuss"],
+    "reason": "Diese Leistungen sind einkommens- und vermögensabhängig und werden auf das Haushaltseinkommen angerechnet. Ihre Wechselwirkung mit Steueränderungen lässt sich nicht ohne ein vollständiges Transfermodell abbilden. Das ZEW-Gutachten zeigt genau hier einen Gegenlaufeffekt: Für einen Beispielhaushalt mit 40.000 Euro Bruttoeinkommen ergibt sich im AfD-Szenario trotz Steuerentlastungen ein Minus von 440 Euro, das ZEW ausdrücklich auf die Anrechnungsregeln beim Wohngeld zurückführt. V1 weist deshalb nur die Steuer- und Kindergeldseite aus und zeigt dazu einen deutlichen Hinweis im Ergebnis.",
+    "consequence": "Das Ergebnis ist eine Steuer- und Kindergeldrechnung, keine Gesamtbilanz des Haushalts. Dieser Hinweis wird im Ergebnisbildschirm sichtbar angezeigt.",
+    "reference": "https://zew.de/fileadmin/FTP/gutachten/Bundestagswahlprogramme_ZEW_2025.pdf"
+  },
+  "last_verified": "2026-09-17",
+  "verified_by": "Direkte Abfrage der Primärquellen (gesetze-im-internet.de, recht.bund.de, bundesfinanzministerium.de) am 17.09.2026"
+}

@@ -1,0 +1,235 @@
+{
+  "schema_version": "1.0.0",
+  "generated": "2026-09-17",
+  "purpose": "Maschinenlesbares Quellenverzeichnis. Jede Zahl und jede Programmaussage des Rechners muss auf einen Eintrag hier zurückführbar sein.",
+  "priority_order": [
+    "official_programme",
+    "bundestag",
+    "bundesministerium_der_finanzen",
+    "official_legislation",
+    "zew",
+    "diw",
+    "iw",
+    "peer_reviewed_research"
+  ],
+  "sources": [
+    {
+      "id": "afd-wahlprogramm-2025",
+      "kategorie": "official_programme",
+      "organisation": "Alternative für Deutschland",
+      "titel": "Programm für Deutschland. Programm der Alternative für Deutschland für die Wahl zum 21. Deutschen Bundestag",
+      "kurztitel": "AfD-Bundestagswahlprogramm 2025",
+      "version": "FINAL — einstimmig verabschiedet auf dem 16. Bundesparteitag, 11.–12. Januar 2025, Riesa",
+      "datum": "2025-01-12",
+      "url": "https://www.afd.de/wp-content/uploads/2025/02/AfD_Bundestagswahlprogramm2025_druck.pdf",
+      "seiten": 166,
+      "abgerufen": "2026-09-17",
+      "verwendung": "Primäre politische Quelle. Jeder Programmpunkt des Rechners ist hieraus wörtlich belegt.",
+      "hinweis": "Die Zahl im Feld source_page der Programmpunktdateien ist die im Dokument aufgedruckte Seitenzahl. Der PDF-Seitenindex ist source_page + 2."
+    },
+    {
+      "id": "afd-leitantrag-2024-11",
+      "kategorie": "official_programme",
+      "organisation": "Alternative für Deutschland",
+      "titel": "Leitantrag der Bundesprogrammkommission zum 16. Bundesparteitag in Riesa (Entwurfsfassung, Stand 28. November 2024)",
+      "datum": "2024-11-28",
+      "url": "https://web.archive.org/web/20241224034628/https://www.afd.de/wp-content/uploads/2024/11/Leitantrag-Bundestagswahlprogramm-2025.pdf",
+      "abgerufen": "2026-09-17",
+      "verwendung": "NICHT als Programmquelle für den Rechner verwendet.",
+      "hinweis": "Diese Entwurfsfassung enthielt einen Sparerpauschbetrag von 2.400 Euro. Die verabschiedete Fassung nennt 6.672 Euro. Der Entwurf ist die Erklärung für die abweichende Zahl im ZEW-Gutachten und wird hier nur zum Nachweis des Quellenkonflikts geführt."
+    },
+    {
+      "id": "estg-32a",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 32a EStG — Einkommensteuertarif, Veranlagungszeitraum 2026",
+      "url": "https://www.gesetze-im-internet.de/estg/__32a.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Tarifformel, Grundfreibetrag, Abrundungsregeln, Splittingverfahren."
+    },
+    {
+      "id": "estg-32",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 32 Abs. 6 EStG — Kinderfreibetrag und Betreuungsfreibetrag",
+      "url": "https://www.gesetze-im-internet.de/estg/__32.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Kinderfreibetrag 3 414 Euro zuzüglich 1 464 Euro je Elternteil und Kind."
+    },
+    {
+      "id": "estg-31",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 31 EStG — Familienleistungsausgleich",
+      "url": "https://www.gesetze-im-internet.de/estg/__31.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Kindergeld ist nach Satz 3 eine Steuervergütung; Günstigerprüfung nach Satz 4."
+    },
+    {
+      "id": "estg-66",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 66 Abs. 1 EStG — Höhe des Kindergeldes",
+      "url": "https://www.gesetze-im-internet.de/estg/__66.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Kindergeld 259 Euro monatlich je Kind."
+    },
+    {
+      "id": "estg-9a",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 9a EStG — Pauschbeträge für Werbungskosten",
+      "url": "https://www.gesetze-im-internet.de/estg/__9a.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Arbeitnehmer-Pauschbetrag 1 230 Euro."
+    },
+    {
+      "id": "estg-10c",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 10c EStG — Sonderausgaben-Pauschbetrag",
+      "url": "https://www.gesetze-im-internet.de/estg/__10c.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Sonderausgaben-Pauschbetrag 36 Euro, verdoppelt bei Zusammenveranlagung."
+    },
+    {
+      "id": "estg-10",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 10 EStG — Vorsorgeaufwendungen",
+      "url": "https://www.gesetze-im-internet.de/estg/__10.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Abzug der Renten-, Kranken- und Pflegeversicherungsbeiträge, Kürzung um 4 Prozent nach Absatz 1 Nr. 3 Satz 4, Höchstbetrag nach Absatz 4."
+    },
+    {
+      "id": "estg-20",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 20 Abs. 9 EStG — Sparer-Pauschbetrag",
+      "url": "https://www.gesetze-im-internet.de/estg/__20.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Sparer-Pauschbetrag 1 000 Euro für Ledige, 2 000 Euro bei Zusammenveranlagung."
+    },
+    {
+      "id": "estg-24b",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 24b EStG — Entlastungsbetrag für Alleinerziehende",
+      "url": "https://www.gesetze-im-internet.de/estg/__24b.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Entlastungsbetrag 4 260 Euro, Betrag bestätigt über den BMF-Programmablaufplan 2026."
+    },
+    {
+      "id": "estg-32d",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 32d EStG — gesonderter Steuertarif für Einkünfte aus Kapitalvermögen",
+      "url": "https://www.gesetze-im-internet.de/estg/__32d.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Abgeltungsteuer 25 Prozent auf Kapitalerträge."
+    },
+    {
+      "id": "solzg-1995-3",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 3 SolzG 1995 — Bemessungsgrundlage und zeitliche Anwendung",
+      "url": "https://www.gesetze-im-internet.de/solzg_1995/__3.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Bemessungsgrundlage mit Kinderfreibeträgen in allen Fällen; Freigrenzen 20 350 und 40 700 Euro; Sonderbehandlung der Kapitalertragsteuer."
+    },
+    {
+      "id": "solzg-1995-4",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "§ 4 SolzG 1995 — Zuschlagsatz",
+      "url": "https://www.gesetze-im-internet.de/solzg_1995/__4.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Satz 5,5 Prozent, Milderungszone höchstens 11,9 Prozent des Überschusses, Centrundung."
+    },
+    {
+      "id": "stefeg-2024",
+      "kategorie": "official_legislation",
+      "organisation": "Bundesrepublik Deutschland",
+      "titel": "Steuerfortentwicklungsgesetz (SteFeG) vom 23. Dezember 2024, BGBl. 2024 I Nr. 449",
+      "url": "https://www.recht.bund.de/bgbl/1/2024/449/regelungstext.pdf",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Rechtsgrundlage für Grundfreibetrag, Kinderfreibetrag, Kindergeld und Solidaritätszuschlags-Freigrenzen der Veranlagungszeiträume 2025 und 2026."
+    },
+    {
+      "id": "bmf-pap-2026",
+      "kategorie": "bundesministerium_der_finanzen",
+      "organisation": "Bundesministerium der Finanzen",
+      "titel": "Programmablaufplan für die maschinelle Berechnung der vom Arbeitslohn einzubehaltenden Lohnsteuer, des Solidaritätszuschlags und der Maßstabsteuer für die Kirchenlohnsteuer für 2026",
+      "zusatz": "BMF-Schreiben vom 12. November 2025, GZ IV C 5 - S 2361/00025/016/028, Stand 12.11.2025 (endgültig), Anlage 1 und Anlage 2",
+      "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-11-12-PAP-2026.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Normative Berechnungsvorschrift nach § 39b Abs. 6 EStG. Zweitimplementierung als unabhängige Referenz für Tarif und Solidaritätszuschlag. Quelle für Beitragsbemessungsgrenzen, Zusatzbeitragssatz 2,9 Prozent und den Entlastungsbetrag für Alleinerziehende.",
+      "module_gelesen": ["MZTABFB", "MLSTJAHR", "UPMLST", "UPTAB26", "MSOLZ", "UPEVP", "MVSPHB"]
+    },
+    {
+      "id": "bmf-pap-2025",
+      "kategorie": "bundesministerium_der_finanzen",
+      "organisation": "Bundesministerium der Finanzen",
+      "titel": "Geänderter Programmablaufplan für die maschinelle Berechnung der Lohnsteuer für 2025",
+      "zusatz": "BMF-Schreiben vom 22. Januar 2025, BStBl I S. 1434",
+      "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/Steuern/Steuerarten/Lohnsteuer/Programmablaufplan/2025-01-22-geaenderte-PAP-2025.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Vergleichsjahr 2025. Bestätigt Grundfreibetrag 12 096 Euro, Freigrenze 19 950 Euro und die Tarifkoeffizienten des Veranlagungszeitraums 2025."
+    },
+    {
+      "id": "zew-gutachten-2025",
+      "kategorie": "zew",
+      "organisation": "ZEW — Leibniz-Zentrum für Europäische Wirtschaftsforschung Mannheim",
+      "titel": "Reformvorschläge der Parteien zur Bundestagswahl 2025: Finanzielle Auswirkungen",
+      "autoren": "Michael Hebsaker, Holger Stichnoth",
+      "datum": "2025-01-17",
+      "url": "https://zew.de/fileadmin/FTP/gutachten/Bundestagswahlprogramme_ZEW_2025.pdf",
+      "abgerufen": "2026-09-17",
+      "verwendung": "AUSSCHLIESSLICH als externe Referenz und als Nachweis des Quellenkonflikts. Keine einzige Zahl des Rechners wird hieraus abgeleitet.",
+      "rechtsstand": "Juli 2024, ausdrücklich nicht 2025 und nicht 2026",
+      "modell": "Mikrosimulationsmodell ZEW-EviSTA, Datengrundlage SOEP v36 (Erhebungsjahr 2019)",
+      "selbstgenannte_grenzen": [
+        "Maßnahmen, die an der Kaufkraft statt an den verfügbaren Einkommen ansetzen (Mehrwertsteuer, CO2-Bepreisung), sind nicht Teil der Analyse.",
+        "Die Ergebnisse gelten nicht für die Wahlprogramme als Ganzes.",
+        "Zweitrundeneffekte werden nicht berücksichtigt."
+      ],
+      "abweichende_annahme": {
+        "position": "ZEW modelliert für die AfD einen Sparer-Freibetrag von 2.400 Euro.",
+        "programm": "Die verabschiedete Programmfassung nennt 6.672 Euro.",
+        "erklaerung": "Die 2.400 Euro stammen aus dem Leitantrag (Stand 28.11.2024), nicht aus der in Riesa verabschiedeten Fassung.",
+        "konsequenz": "Der Rechner übernimmt den Programmwert und weist die Abweichung aus, statt Parameter zu mischen."
+      }
+    },
+    {
+      "id": "bt-drs-20-13356",
+      "kategorie": "bundestag",
+      "organisation": "Deutscher Bundestag",
+      "titel": "Antrag der AfD-Bundestagsfraktion 'Programm für Deutschland – Ein neuer Weg für die Ertragsteuern', BT-Drucksache 20/13356",
+      "datum": "2024-10-15",
+      "url": "https://dserver.bundestag.de/btd/20/133/2013356.pdf",
+      "abgerufen": "2026-09-17",
+      "verwendung": "NICHT als Programmquelle verwendet. Wird nur geführt, um nachzuweisen, dass das ZEW-Gutachten die Posten Werbungskostenpauschale 2.000 Euro und Kinderfreibetrag 12.000 Euro aus diesem Fraktionsantrag und nicht aus dem Wahlprogramm übernommen hat.",
+      "nachweis": "Die Zeichenfolgen 'Werbungskostenpauschale' und 'Pendlerpauschale' kommen im 166-seitigen Wahlprogramm null Mal vor."
+    },
+    {
+      "id": "bmf-steuerrechner",
+      "kategorie": "bundesministerium_der_finanzen",
+      "organisation": "Bundesministerium der Finanzen",
+      "titel": "Lohn- und Einkommensteuerrechner sowie Entwicklerschnittstelle",
+      "url": "https://www.bmf-steuerrechner.de/",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Recherchiert, aber nicht als Prüforakel nutzbar: Die Schnittstelle bmf-steuerrechner.de/interface/2026Version1.xhtml verlangt einen registrierten Zugriffscode. Als Referenz diente stattdessen der Programmablaufplan, der die normative Grundlage dieses Dienstes ist.",
+      "status": "nicht verwendet"
+    },
+    {
+      "id": "soep-v36",
+      "kategorie": "peer_reviewed_research",
+      "organisation": "DIW Berlin",
+      "titel": "Sozio-oekonomisches Panel (SOEP), Version v36, Erhebungsjahr 2019",
+      "url": "https://www.diw.de/de/diw_01.c.615551.de/forschungsdaten.html",
+      "abgerufen": "2026-09-17",
+      "verwendung": "Nicht verwendet. Nur als Referenz geführt, weil das ZEW-Gutachten darauf beruht und dieser Umstand seinen Rechtsstand und seine Stichprobe erklärt."
+    }
+  ],
+  "hinweis_zu_zweitquellen": "Für politische Aussagen wird ausschliesslich das verabschiedete Wahlprogramm zitiert. Sekundäre politische Kommentierung wird nicht verwendet, solange eine Primärquelle vorhanden ist."
+}

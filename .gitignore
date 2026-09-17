@@ -1,0 +1,18 @@
+# Abhaengigkeiten und Bauergebnisse
+node_modules/
+_site/
+
+# Testergebnisse
+test-results/
+playwright-report/
+blob-report/
+
+# Betriebssystem und Editor
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Zwischendateien
+*.tmp
+*.tmp.mjs
