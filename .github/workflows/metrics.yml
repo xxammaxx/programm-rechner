@@ -31,7 +31,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Quellcode holen
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # actions/checkout v4
+        uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # actions/checkout v5
 
       - name: Messwerte abrufen
         id: werte
@@ -40,7 +40,7 @@ jobs:
         run: node tools/metriken.mjs
 
       - name: Kommentar aktualisieren
-        uses: actions/github-script@f28e40c7f34bde8b3046d885e986cb6290c5673b # actions/github-script v7
+        uses: actions/github-script@ed597411d8f924073f98dfc5c65a23a2325f34cd # actions/github-script v8
         env:
           BERICHT: ${{ steps.werte.outputs.bericht }}
         with:
